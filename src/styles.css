@@ -1,22 +1,53 @@
 /* Leaflet CSS */
 @import "leaflet/dist/leaflet.css";
 
+@font-face {
+  font-family: "Inter";
+  src: url("assets/fonts/Inter/Inter-VariableFont_opsz\,wght.ttf")
+    format("truetype");
+}
+
 *,
 *::after,
 *::before {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
+  font-family: "Inter", sans-serif;
+  border: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--neutral-color-400);
+  border-radius: var(--border-radius-full);
+}
+::-webkit-scrollbar-track {
+  background-color: transparent;
 }
 
 body,
 html {
-  background-color: var(--secondary-color-900);
+  background-color: var(--secondary-color-950);
   color: var(--text-color);
 }
 
 :root {
+  --neutral-color-950: #000000;
+  --neutral-color-900: #1a1a1a;
+  --neutral-color-800: #333333;
+  --neutral-color-700: #4d4d4d;
+  --neutral-color-600: #666666;
+  --neutral-color-500: #999999;
+  --neutral-color-400: #b3b3b3;
+  --neutral-color-300: #cccccc;
+  --neutral-color-200: #e6e6e6;
+  --neutral-color-100: #f0f0f0;
+  --neutral-color-50: #ffffff;
+
   --primary-color-900: #d35200;
   --primary-color-800: #dd6b00;
   --primary-color-700: #e37a02;
@@ -52,6 +83,9 @@ html {
   --text-3xl: 2.25rem; /* 36px */
   --text-4xl: 2.5rem; /* 40px */
   --text-5xl: 3rem; /* 48px */
+  --text-6xl: 3.75rem; /* 60px */
+  --text-7xl: 4.5rem; /* 72px */
+  --text-8xl: 6rem; /* 96px */
 
   --font-lighter: 100;
   --font-light: 300;
@@ -89,4 +123,30 @@ html {
   --tracking-widest: 0.15em;
 }
 
-/* You can add global styles to this file, and also import other style files */
+/* Gradient Border Cards */
+.gradient-border-card {
+  --border-width: 2px;
+  position: relative;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.gradient-border-card::before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: inherit;
+  border: var(--border-width) solid transparent;
+  background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.18) 0%,
+      rgba(255, 255, 255, 0.03) 50%,
+      rgba(255, 255, 255, 0.1) 100%
+    )
+    border-box;
+  mask: linear-gradient(black, black) border-box,
+    linear-gradient(black, black) padding-box;
+  mask-composite: subtract;
+  -webkit-mask-composite: xor;
+}

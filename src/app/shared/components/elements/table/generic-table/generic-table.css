@@ -2,31 +2,26 @@
   width: 100%;
   overflow-x: auto;
   border-radius: var(--border-radius-sm);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   margin-top: var(--padding-lg);
-  border: 1px solid var(--secondary-color-600);
 }
 
 .generic-table {
   width: 100%;
   border-collapse: collapse;
-  background: var(--secondary-color-800);
+  background: var(--neutral-color-800);
   font-size: var(--text-sm);
   color: var(--text-color);
-  box-shadow: inset 0 1px 0 var(--secondary-color-600);
 }
 
 .generic-table thead {
-  background: var(--secondary-color-700);
-  border-bottom: 2px solid var(--secondary-color-600);
+  background: var(--neutral-color-300);
 }
 
 .generic-table th {
   padding: var(--padding-md) var(--padding-lg);
   text-align: left;
-  font-weight: var(--font-semibold);
-  color: var(--text-color);
-  border-bottom: 1px solid var(--secondary-color-600);
+  font-weight: var(--font-bold);
+  color: var(--neutral-color-900);
   position: relative;
 }
 
@@ -34,10 +29,6 @@
   cursor: pointer;
   user-select: none;
   transition: background-color 0.2s ease;
-}
-
-.generic-table th.sortable:hover {
-  background-color: var(--secondary-color-600);
 }
 
 .header-content {
@@ -59,16 +50,18 @@
 
 .generic-table td {
   padding: var(--padding-md) var(--padding-lg);
-  border-bottom: 1px solid var(--secondary-color-600);
+  border-bottom: 1px solid var(--neutral-color-700);
+
   color: var(--text-color);
 }
 
 .data-row {
-  transition: background-color 0.2s ease;
+  border-left: 2px solid transparent;
+  transition: border-left-color 0.2s ease;
 }
 
 .data-row:hover {
-  background-color: var(--secondary-color-700);
+  background-color: var(--neutral-color-700);
 }
 
 .row-number-header,
@@ -76,17 +69,17 @@
   width: 60px;
   text-align: center;
   font-weight: var(--font-medium);
-  color: var(--secondary-color-400);
+  color: var(--neutral-color-400);
 }
 
 .empty-row {
-  background-color: var(--secondary-color-700);
+  background-color: var(--neutral-color-700);
 }
 
 .empty-message {
   text-align: center;
   padding: var(--padding-xl);
-  color: var(--secondary-color-400);
+  color: var(--neutral-color-400);
   font-style: italic;
 }
 
@@ -104,27 +97,26 @@
 
 /* Additional styling for better visual hierarchy */
 .generic-table tbody tr:nth-child(even) {
-  background-color: var(--secondary-color-750, var(--secondary-color-800));
+  background-color: var(--neutral-color-900);
 }
 
 .generic-table tbody tr:nth-child(odd) {
-  background-color: var(--secondary-color-800);
+  background-color: var(--secodary-color-800);
 }
 
-.generic-table tbody tr:nth-child(even):hover,
-.generic-table tbody tr:nth-child(odd):hover {
-  background-color: var(--secondary-color-700);
+.generic-table tbody tr:hover {
+  background-color: var(--neutral-color-700);
 }
 
 /* Focus states for accessibility */
 .generic-table th.sortable:focus {
-  outline: 2px solid var(--primary-color-500);
+  outline: 2px solid var(--neutral-color-500);
   outline-offset: 2px;
 }
 
 /* Primary color accents */
 .generic-table th.sorted {
-  background-color: var(--primary-color-800);
+  background-color: var(--neutral-color-500);
   color: var(--text-color);
 }
 
@@ -155,11 +147,7 @@
 
 /* Enhanced borders and shadows */
 .table-container {
-  border: 1px solid var(--secondary-color-600);
-}
-
-.generic-table {
-  box-shadow: inset 0 1px 0 var(--secondary-color-600);
+  border: 2px solid var(--neutral-color-900);
 }
 
 /* Better number formatting alignment */
@@ -181,7 +169,7 @@
   height: 60px;
   object-fit: contain;
   border-radius: var(--border-radius-xs);
-  background: var(--secondary-color-700);
+  background: var(--neutral-color-700);
 }
 
 /* Clickable rows */
@@ -190,7 +178,5 @@
 }
 
 .data-row.clickable:hover {
-  background-color: var(--primary-color-800) !important;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-left: 2px solid var(--neutral-color-300);
 }

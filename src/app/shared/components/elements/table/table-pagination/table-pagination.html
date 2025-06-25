@@ -1,0 +1,37 @@
+<div class="pagination-container">
+  <div class="pagination-info">
+    <span class="info-text">
+      Showing {{ startItem }} - {{ endItem }} of {{ config.totalItems }} items
+    </span>
+  </div>
+  
+  <div class="pagination-controls">
+    <button 
+      class="pagination-btn first-page"
+      [disabled]="config.currentPage === 1"
+      (click)="goToFirstPage()"
+      title="First page">
+      First
+    </button>
+    
+    <button 
+      class="pagination-btn prev"
+      [disabled]="!config.hasPrevious"
+      (click)="previousPage()"
+      title="Previous page">
+        Previous
+    </button>
+    
+    <span class="page-info">
+      Page {{ config.currentPage }} of {{ totalPages }}
+    </span>
+    
+    <button 
+      class="pagination-btn next"
+      [disabled]="!config.hasNext"
+      (click)="nextPage()"
+      title="Next page">
+      Next
+    </button>
+  </div>
+</div>

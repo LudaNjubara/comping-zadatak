@@ -1,7 +1,7 @@
-<div class="pokemon-detail-page">
+<div>
   <!-- Back Button -->
   <button class="back-button" (click)="goBack()">
-    ⬅️ Back to Pokémon List
+    Back to Pokemon List
   </button>
 
   <!-- Loading State -->
@@ -19,20 +19,20 @@
   </div>
 
   <!-- Pokemon Details -->
-  <div *ngIf="!loading() && !error() && pokemon()" class="pokemon-details">
+  <div *ngIf="!loading() && !error() && pokemon()" class="pokemon-details gradient-border-card">
     <div class="pokemon-grid">
       <!-- Image Section -->
-      <div class="pokemon-image-section">
+      <div class="pokemon-image-section gradient-border-card">
         <div class="image-container">
           <img 
             [src]="pokemon()!.sprites.front_default" 
             [alt]="pokemon()!.name"
-            class="pokemon-main-image">
+            class="pokemon-main-image gradient-border-card">
           <img 
             *ngIf="pokemon()!.sprites.front_shiny"
             [src]="pokemon()!.sprites.front_shiny" 
             [alt]="pokemon()!.name + ' (shiny)'"
-            class="pokemon-shiny-image"
+            class="pokemon-shiny-image gradient-border-card"
             title="Shiny variant">
         </div>
       </div>
@@ -46,7 +46,7 @@
 
         <!-- Basic Info -->
         <div class="info-grid">
-          <div class="info-card">
+          <div class="info-card gradient-border-card">
             <h3 class="info-title">Physical</h3>
             <div class="info-content">
               <div class="stat-item">
@@ -64,7 +64,7 @@
             </div>
           </div>
 
-          <div class="info-card">
+          <div class="info-card gradient-border-card">
             <h3 class="info-title">Types</h3>
             <div class="types-container">
               <span 
@@ -76,7 +76,7 @@
             </div>
           </div>
 
-          <div class="info-card">
+          <div class="info-card gradient-border-card">
             <h3 class="info-title">Abilities</h3>
             <div class="abilities-container">
               <div 
@@ -94,7 +94,7 @@
         <div class="stats-section">
           <h3 class="section-title">Base Stats</h3>
           <div class="stats-container">
-            <div *ngFor="let stat of pokemon()!.stats" class="stat-bar">
+            <div *ngFor="let stat of pokemon()!.stats" class="stat-bar gradient-border-card">
               <div class="stat-info">
                 <span class="stat-name">{{ formatStatName(stat.stat.name) }}</span>
                 <span class="stat-number">{{ stat.base_stat }}</span>

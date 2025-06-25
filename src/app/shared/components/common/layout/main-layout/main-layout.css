@@ -1,17 +1,25 @@
+.main-layout {
+  background: radial-gradient(
+    circle at top left,
+    #1b1b1b 0%,
+    var(--secondary-color-950) 50%
+  );
+}
+
 .main-content {
-  padding: var(--padding-3xl) var(--padding-5xl);
+  padding: 200px var(--padding-4xl) var(--padding-2xl);
   max-width: 1800px;
   margin: 0 auto;
 }
 
 @media (max-width: 768px) {
   .main-content {
-    padding: var(--padding-3xl) var(--padding-4xl);
+    padding: 150px var(--padding-2xl) var(--padding-2xl);
   }
 }
 
 @media (max-width: 480px) {
   .main-content {
-    padding: var(--padding-3xl) var(--padding-md);
+    padding: 150px var(--padding-lg) var(--padding-2xl);
   }
 }

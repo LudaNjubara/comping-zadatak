@@ -27,11 +27,13 @@
       </app-generic-table>
 
       <!-- Pagination -->
-      <app-table-pagination
-        [config]="paginationConfig"
-        (pageChange)="onPageChange($event)"
-        (firstPage)="onFirstPage()">
-      </app-table-pagination>
+      <div class="pagination-wrapper">
+        <app-table-pagination
+          [config]="paginationConfig"
+          (pageChange)="onPageChange($event)"
+          (firstPage)="onFirstPage()">
+        </app-table-pagination>
+      </div>
     </div>
   </div>
 </div>

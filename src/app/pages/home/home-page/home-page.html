@@ -2,7 +2,7 @@
 
     <h1 class="dashboard-page-title">Dashboard</h1>
 
-    <div class="widget-container">
+    <div class="widget-container gradient-border-card">
         <h2 class="widget-title">Locations</h2>
         <app-map-view 
             [items]="locations" 
@@ -12,7 +12,7 @@
         </app-map-view>
     </div>
 
-    <div class="widget-container">
+    <div class="widget-container gradient-border-card">
         <h2 class="widget-title">Hourly Time Data</h2>
         <app-chart-view
             [chartType]="currentChartType"
