@@ -19,6 +19,7 @@
       [disabled]="!config.hasPrevious"
       (click)="previousPage()"
       title="Previous page">
+        <ng-icon [svg]="arrowLeft" />
         Previous
     </button>
     
@@ -32,6 +33,7 @@
       (click)="nextPage()"
       title="Next page">
       Next
+      <ng-icon [svg]="arrowRight" />
     </button>
   </div>
 </div>

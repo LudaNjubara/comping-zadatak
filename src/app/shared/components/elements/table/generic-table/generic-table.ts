@@ -61,9 +61,9 @@ export class GenericTable<T> {
 
   getSortIcon(column: TableColumn<T>): string {
     if (!column.sortable || this.sortColumn !== column.key) {
-      return '↕️';
+      return '';
     }
-    return this.sortDirection === 'asc' ? '⬆️' : '⬇️';
+    return this.sortDirection === 'asc' ? '▲' : '▼';
   }
 
   // Add method to check if column is currently sorted

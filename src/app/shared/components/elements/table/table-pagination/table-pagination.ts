@@ -1,5 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgIcon } from '@ng-icons/core';
+import { heroArrowLeft, heroArrowRight } from '@ng-icons/heroicons/outline';
 
 export interface PaginationConfig {
   currentPage: number;
@@ -11,11 +13,15 @@ export interface PaginationConfig {
 
 @Component({
   selector: 'app-table-pagination',
-  imports: [CommonModule],
+  imports: [CommonModule, NgIcon],
   templateUrl: './table-pagination.html',
   styleUrl: './table-pagination.css'
 })
 export class TablePagination {
+  // Icons
+  arrowRight = heroArrowRight;
+  arrowLeft = heroArrowLeft;
+
   @Input() config: PaginationConfig = {
     currentPage: 1,
     totalItems: 0,

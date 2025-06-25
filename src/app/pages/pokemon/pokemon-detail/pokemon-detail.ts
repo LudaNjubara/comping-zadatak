@@ -1,18 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { heroChevronLeft } from '@ng-icons/heroicons/outline';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { PokemonStateService } from '@/app/features/pokemon/services/pokemon-state.service';
+import { NgIcon } from '@ng-icons/core';
 
 @Component({
   selector: 'app-pokemon-detail',
-  imports: [CommonModule],
+  imports: [CommonModule, NgIcon],
   templateUrl: './pokemon-detail.html',
   styleUrl: './pokemon-detail.css'
 })
 export class PokemonDetailPage implements OnInit, OnDestroy {
+  // Icons
+  chevronLeftIcon = heroChevronLeft;
+
   private destroy$ = new Subject<void>();
 
   private pokemonName: string = '';
