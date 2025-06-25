@@ -67,21 +67,28 @@ Koristi se Karma test runner s Jasmine test framework-om.
 ```
 src/
 ├── app/
-│   ├── features/          # Feature moduli
+|   ├── core/             # Glavni moduli aplikacije
+│   ├── features/         # Feature moduli
+│   │   ├── chart/        # Chart funkcionalnost
+│   │   ├── pokemon/      # Pokemon funkcionalnost
 │   │   └── map/          # Mapa funkcionalnost
 │   ├── pages/            # Stranice aplikacije
-│   │   └── pokemon/      # Pokemon stranice
-│   ├── shared/           # Dijeljene komponente
-│   │   └── components/   # Zajedničke komponente
-│   └── ...
-├── assets/               # Statički resursi
-└── ...
+│   │   ├── home/         # Početna stranica (dashboard)
+│   │   └── pokemon/      # Pokemon stranica (sa podstranicama)
+│   └── shared/           # Dijeljene komponente
+│       └── components/   # Dijeljene komponente
+|           ├── common/   # Zajedničke komponente
+│           └── elements/ # Elementi UI-a
+|
+├── data/                 # Podaci (json)
+├── types/                # Tipovi podataka
+├── utils/                # Pomoćne funkcije
 ```
 
 ## Instalacija
 
 1. Clone repo
-2. Instaliraj dependencies:
+2. Instalirati dependencies:
    ```bash
    pnpm install
    ```
