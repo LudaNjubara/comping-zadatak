@@ -2,6 +2,10 @@
 
 Angular aplikacija koja sadrži dashboard s widgetima za prikaz interaktivne mape i podataka u grafičkom/tabličnom prikazu. Također uključuje pregled Pokemon-a s detaljnim informacijama.
 
+## Online demo
+
+Aplikaciju možete isprobati na sljedećem linku: [Demo aplikacija](https://comping-zadatak.vercel.app/)
+
 ## Pregled aplikacije
 
 Ova aplikacija je razvijena koristeći Angular 20 i uključuje sljedeće funkcionalnosti:
