@@ -37,3 +37,33 @@
     color: var(--text-color);
   }
 }
+
+/* Responsive design */
+
+@media (max-width: 768px) {
+  .dashboard-page-title {
+    font-size: var(--text-4xl);
+  }
+
+  .widget-container {
+    padding: var(--padding-xl);
+  }
+
+  .widget-title {
+    font-size: var(--text-lg);
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard-page-title {
+    font-size: var(--text-3xl);
+  }
+
+  .widget-container {
+    padding: var(--padding-2xl) var(--padding-lg);
+  }
+
+  .widget-title {
+    font-size: var(--text-md);
+  }
+}

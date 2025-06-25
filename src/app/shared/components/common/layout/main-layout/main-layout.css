@@ -9,3 +9,9 @@
     padding: var(--padding-3xl) var(--padding-4xl);
   }
 }
+
+@media (max-width: 480px) {
+  .main-content {
+    padding: var(--padding-3xl) var(--padding-md);
+  }
+}
