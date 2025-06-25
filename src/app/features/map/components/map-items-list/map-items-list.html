@@ -1,0 +1,25 @@
+<div class="items-list">
+  <h3 class="list-title">{{ items.length }} locations</h3>
+  <div class="items-container">
+    <div 
+      *ngFor="let item of items" 
+      class="item-card"
+      [class.selected]="selectedItemId === item.id"
+      (click)="onItemClick(item)">
+      <div class="item-header">
+        <h4 class="item-name">{{ item.name }}</h4>
+      </div>
+      <p *ngIf="item.description" class="item-description">
+        {{ item.description }}
+      </p>
+      <div class="item-coordinates">
+        <small>{{ item.lat }}, {{ item.lng }}</small>
+      </div>
+    </div>
+    
+    <!-- Empty state -->
+    <div *ngIf="items.length === 0" class="empty-state">
+      <p>No locations available</p>
+    </div>
+  </div>
+</div>

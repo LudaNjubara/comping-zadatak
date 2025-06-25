@@ -1,0 +1,21 @@
+<div class="chart-container">
+  <div *ngIf="isBrowserOnly" class="chart-wrapper">
+    <canvas 
+      baseChart
+      [data]="chartData"
+      [options]="chartOptions"
+      [type]="chartType"
+      [width]="width"
+      [height]="height">
+    </canvas>
+  </div>
+  
+  <!-- Empty state -->
+  <div *ngIf="!data || (chartData.datasets.length === 0)" class="empty-state">
+    <div class="empty-content">
+      <div class="empty-icon">📊</div>
+      <h3>No Data Available</h3>
+      <p>Please provide data to display the chart</p>
+    </div>
+  </div>
+</div>

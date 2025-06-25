@@ -1,1 +1,92 @@
+/* Leaflet CSS */
+@import "leaflet/dist/leaflet.css";
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body,
+html {
+  background-color: var(--secondary-color-900);
+  color: var(--text-color);
+}
+
+:root {
+  --primary-color-900: #d35200;
+  --primary-color-800: #dd6b00;
+  --primary-color-700: #e37a02;
+  --primary-color-600: #e98904;
+  --primary-color-500: #ed9407;
+  --primary-color-400: #efa328;
+  --primary-color-300: #f1b34d;
+  --primary-color-200: #f5c980;
+  --primary-color-100: #f9deb2;
+  --primary-color-50: #fcf2e0;
+
+  --secondary-color-950: #131313;
+  --secondary-color-900: #202020;
+  --secondary-color-800: #313131;
+  --secondary-color-700: #4e4e4e;
+  --secondary-color-600: #6b6b6b;
+  --secondary-color-500: #9c9c9c;
+  --secondary-color-400: #bcbcbc;
+  --secondary-color-300: #dfdfdf;
+  --secondary-color-200: #ededed;
+  --secondary-color-100: #f4f4f4;
+  --secondary-color-50: #fafafa;
+
+  --text-color: #f3f3f3;
+
+  --text-xs: 0.75rem; /* 12px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-normal: 1rem; /* 16px */
+  --text-md: 1.125rem; /* 18px */
+  --text-lg: 1.25rem; /* 20px */
+  --text-xl: 1.5rem; /* 24px */
+  --text-2xl: 1.875rem; /* 30px */
+  --text-3xl: 2.25rem; /* 36px */
+  --text-4xl: 2.5rem; /* 40px */
+  --text-5xl: 3rem; /* 48px */
+
+  --font-lighter: 100;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+
+  --padding-xs: 4px;
+  --padding-sm: 8px;
+  --padding-md: 12px;
+  --padding-lg: 16px;
+  --padding-xl: 24px;
+  --padding-2xl: 32px;
+  --padding-3xl: 48px;
+  --padding-4xl: 64px;
+  --padding-5xl: 96px;
+
+  --border-radius-xs: 6px;
+  --border-radius-sm: 12px;
+  --border-radius-md: 18px;
+  --border-radius-lg: 24px;
+  --border-radius-xl: 36px;
+  --border-radius-2xl: 48px;
+  --border-radius-3xl: 72px;
+  --border-radius-4xl: 96px;
+  --border-radius-5xl: 120px;
+  --border-radius-full: 9999px;
+
+  --tracking-tight: -0.05em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.05em;
+  --tracking-wider: 0.1em;
+  --tracking-widest: 0.15em;
+}
+
 /* You can add global styles to this file, and also import other style files */

@@ -1,0 +1,58 @@
+<div class="table-container">
+  <table class="generic-table">
+    <thead>
+      <tr>
+        <th *ngIf="showRowNumbers" class="row-number-header">#</th>
+        <th 
+          *ngFor="let column of columns" 
+          [class.sortable]="column.sortable"
+          [class.sorted]="isColumnSorted(column)"
+          (click)="onSort(column)">
+          <div class="header-content">
+            <span>{{ column.label }}</span>
+            <span 
+              *ngIf="column.sortable" 
+              class="sort-icon"
+              [class.active]="isColumnSorted(column)">
+              {{ getSortIcon(column) }}
+            </span>
+          </div>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr 
+        *ngFor="let row of sortedData; let i = index" 
+        class="data-row"
+        [class.clickable]="clickableRows"
+        (click)="onRowClick(row)">
+        <td *ngIf="showRowNumbers" class="row-number">{{ i + 1 }}</td>
+        <td 
+          *ngFor="let column of columns" 
+          [attr.data-label]="column.label"
+          [class]="getCellClass(column)">
+          
+          <!-- Handle image columns -->
+          <img 
+            *ngIf="column.type === 'image' && row[column.key]" 
+            [src]="row[column.key]" 
+            [alt]="'Pokemon image'"
+            class="table-image"
+            loading="lazy">
+          
+          <!-- Handle other data types -->
+          <span *ngIf="column.type !== 'image'">
+            {{ formatValue(row[column.key], column) }}
+          </span>
+        </td>
+      </tr>
+      
+      <!-- Empty state -->
+      <tr *ngIf="data.length === 0" class="empty-row">
+        <td [attr.colspan]="columns.length + (showRowNumbers ? 1 : 0)" class="empty-message">
+          {{ emptyMessage }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

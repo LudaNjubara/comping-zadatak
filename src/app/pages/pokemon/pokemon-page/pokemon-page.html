@@ -1,0 +1,37 @@
+<div>
+  <h1 class="pokemon-page-title">Pokemon Collection</h1>
+
+  <!-- Loading State (only for initial load) -->
+  <div *ngIf="pokemonState.loading()" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Loading Pokémon data...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="pokemonState.error() && !pokemonState.loading()" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <h3 class="error-title">Oops! Something went wrong</h3>
+    <p class="error-message">{{ pokemonState.error() }}</p>
+  </div>
+
+  <!-- Main Content -->
+  <div *ngIf="!pokemonState.loading() && !pokemonState.error()" class="content-container">
+    <!-- Pokemon Table -->
+    <div class="table-wrapper" [class.loading-overlay]="pokemonState.loading()">
+      <app-generic-table
+        [data]="pokemonState.pokemon()"
+        [columns]="columns"
+        [clickableRows]="true"
+        [emptyMessage]="'No Pokémon found'"
+        (rowClick)="onRowClick($event)">
+      </app-generic-table>
+
+      <!-- Pagination -->
+      <app-table-pagination
+        [config]="paginationConfig"
+        (pageChange)="onPageChange($event)"
+        (firstPage)="onFirstPage()">
+      </app-table-pagination>
+    </div>
+  </div>
+</div>

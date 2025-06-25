@@ -1,0 +1,17 @@
+<div class="map-wrapper">
+  <!-- Map Container -->
+  <div class="map-container">
+    <div 
+      #mapElement
+      class="leaflet-map">
+    </div>
+  </div>
+
+  <!-- Items List Component -->
+  <app-map-items-list
+    [items]="items"
+    [selectedItemId]="selectedItem?.id || null"
+    [title]="'Locations'"
+    (itemSelected)="onItemSelected($event)">
+  </app-map-items-list>
+</div>

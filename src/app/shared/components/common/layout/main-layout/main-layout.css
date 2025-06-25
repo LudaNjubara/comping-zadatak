@@ -1,0 +1,11 @@
+.main-content {
+  padding: var(--padding-3xl) var(--padding-5xl);
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: var(--padding-3xl) var(--padding-4xl);
+  }
+}

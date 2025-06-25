@@ -1,0 +1,115 @@
+<div class="pokemon-detail-page">
+  <!-- Back Button -->
+  <button class="back-button" (click)="goBack()">
+    ⬅️ Back to Pokémon List
+  </button>
+
+  <!-- Loading State -->
+  <div *ngIf="loading()" class="loading-container">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">Loading Pokémon details...</p>
+  </div>
+
+  <!-- Error State -->
+  <div *ngIf="!loading() && error()" class="error-container">
+    <div class="error-icon">⚠️</div>
+    <h3 class="error-title">Pokémon not found</h3>
+    <p class="error-message">{{ error() }}</p>
+    <button class="retry-button" (click)="retryLoad()">Try Again</button>
+  </div>
+
+  <!-- Pokemon Details -->
+  <div *ngIf="!loading() && !error() && pokemon()" class="pokemon-details">
+    <div class="pokemon-grid">
+      <!-- Image Section -->
+      <div class="pokemon-image-section">
+        <div class="image-container">
+          <img 
+            [src]="pokemon()!.sprites.front_default" 
+            [alt]="pokemon()!.name"
+            class="pokemon-main-image">
+          <img 
+            *ngIf="pokemon()!.sprites.front_shiny"
+            [src]="pokemon()!.sprites.front_shiny" 
+            [alt]="pokemon()!.name + ' (shiny)'"
+            class="pokemon-shiny-image"
+            title="Shiny variant">
+        </div>
+      </div>
+
+      <!-- Details Section -->
+      <div class="pokemon-info-section">
+        <header class="pokemon-header">
+          <h1 class="pokemon-name">{{ pokemon()!.name | titlecase }}</h1>
+          <span class="pokemon-id">#{{ pokemon()!.id.toString().padStart(3, '0') }}</span>
+        </header>
+
+        <!-- Basic Info -->
+        <div class="info-grid">
+          <div class="info-card">
+            <h3 class="info-title">Physical</h3>
+            <div class="info-content">
+              <div class="stat-item">
+                <span class="stat-label">Height:</span>
+                <span class="stat-value">{{ (pokemon()!.height / 10).toFixed(1) }} m</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Weight:</span>
+                <span class="stat-value">{{ (pokemon()!.weight / 10).toFixed(1) }} kg</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Base Experience:</span>
+                <span class="stat-value">{{ pokemon()!.base_experience }}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3 class="info-title">Types</h3>
+            <div class="types-container">
+              <span 
+                *ngFor="let type of pokemon()!.types" 
+                class="type-badge"
+                [attr.data-type]="type.type.name">
+                {{ type.type.name | titlecase }}
+              </span>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <h3 class="info-title">Abilities</h3>
+            <div class="abilities-container">
+              <div 
+                *ngFor="let ability of pokemon()!.abilities" 
+                class="ability-item"
+                [class.hidden]="ability.is_hidden">
+                <span class="ability-name">{{ ability.ability.name | titlecase }}</span>
+                <span *ngIf="ability.is_hidden" class="hidden-tag">Hidden</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-section">
+          <h3 class="section-title">Base Stats</h3>
+          <div class="stats-container">
+            <div *ngFor="let stat of pokemon()!.stats" class="stat-bar">
+              <div class="stat-info">
+                <span class="stat-name">{{ formatStatName(stat.stat.name) }}</span>
+                <span class="stat-number">{{ stat.base_stat }}</span>
+              </div>
+              <div class="stat-progress">
+                <div 
+                  class="stat-fill" 
+                  [style.width.%]="(stat.base_stat / 255) * 100"
+                  [attr.data-stat]="stat.stat.name">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

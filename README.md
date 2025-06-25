@@ -1,59 +1,95 @@
-# CompingZadatak
+# Comping Zadatak
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.3.
+Angular aplikacija koja sadrži dashboard s widgetima za prikaz interaktivne mape i podataka u grafičkom/tabličnom prikazu. Također uključuje pregled Pokemon-a s detaljnim informacijama.
 
-## Development server
+## Pregled aplikacije
 
-To start a local development server, run:
+Ova aplikacija je razvijena koristeći Angular 20 i uključuje sljedeće funkcionalnosti:
 
-```bash
-ng serve
-```
+- **Pokemon preglednik** - pregledavanje Pokemon-a s detaljnim informacijama
+- **Interaktivna mapa** - prikaz lokacija u Zagrebu koristeći Leaflet
+- **Charts** - grafički prikazi podataka koristeći Chart.js
+- **Responsive design** - prilagođeno za različite veličine ekrana
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Tehnologije
 
-## Code scaffolding
+- Angular 20
+- TypeScript 5.8
+- RxJS 7.8
+- Leaflet (ngx-leaflet)
+- Chart.js (ng2-charts)
+- Karma + Jasmine za testiranje
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Pokretanje aplikacije
 
-```bash
-ng generate component component-name
-```
+### Development server
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Za pokretanje lokalnog development servera:
 
 ```bash
-ng build
+pnpm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Aplikacija će biti dostupna na `http://localhost:4200/`.
 
-## Running unit tests
+## Build
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+Za stvaranje production builda:
 
 ```bash
-ng test
+pnpm build
 ```
 
-## Running end-to-end tests
+Production build dostupan je u `dist/` folderu.
 
-For end-to-end (e2e) testing, run:
+### Production build
+
+Za pokretanje production verzije:
 
 ```bash
-ng e2e
+pnpm serve:prod
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+## Testiranje
 
-## Additional Resources
+### Unit testovi
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Za pokretanje unit testova:
+
+```bash
+pnpm test
+```
+
+Koristi se Karma test runner s Jasmine test framework-om.
+
+## Struktura projekta
+
+```
+src/
+├── app/
+│   ├── features/          # Feature moduli
+│   │   └── map/          # Mapa funkcionalnost
+│   ├── pages/            # Stranice aplikacije
+│   │   └── pokemon/      # Pokemon stranice
+│   ├── shared/           # Dijeljene komponente
+│   │   └── components/   # Zajedničke komponente
+│   └── ...
+├── assets/               # Statički resursi
+└── ...
+```
+
+## Instalacija
+
+1. Clone repo
+2. Instaliraj dependencies:
+   ```bash
+   pnpm install
+   ```
+3. Pokrenuti aplikaciju:
+   ```bash
+   pnpm start
+   ```
+
+## Izradio
+
+© 2025 Mihael Šestak

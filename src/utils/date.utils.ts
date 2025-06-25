@@ -1,0 +1,1 @@
+export const currYear: number = new Date().getFullYear();

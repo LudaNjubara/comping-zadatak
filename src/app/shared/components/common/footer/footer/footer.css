@@ -1,0 +1,21 @@
+.footer {
+  background-color: var(--secondary-color-900);
+  border-top: 2px solid var(--secondary-color-700);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--padding-4xl) var(--padding-2xl) var(--padding-2xl);
+}
+
+.footer-bottom {
+  padding-top: var(--padding-lg);
+  text-align: center;
+}
+
+.footer-bottom p {
+  margin: 0;
+  color: var(--secondary-color-700);
+  font-size: var(--text-sm);
+}
