@@ -1,48 +1,34 @@
-import { ChartDataService } from '@/app/features/chart/chart-data.service';
-import { ChartView } from '@/app/features/chart/chart-view/chart-view';
-import { ChartDataSet, ChartViewType } from '@/app/features/chart/chart.types';
-import { sampleLocations } from '@/app/features/map/sample-locations';
+
 import { TimeData } from '@/types/global.types';
 import { Component, OnInit } from '@angular/core';
 
-import { MapView } from '@/app/features/map/map-view/map-view';
-import { GenericTable, TableColumn } from '@/app/shared/components/elements/table/generic-table/generic-table';
+import { ChartDataService } from '@/app/features/widget/chart/chart-data.service';
+import { ChartWrapper } from '@/app/features/widget/chart/chart-wrapper/chart-wrapper';
+import { ChartDataSet } from '@/app/features/widget/chart/chart.types';
+import { MapWrapper } from '@/app/features/widget/map/map-wrapper/map-wrapper';
+import { MapStateService } from '@/app/features/widget/map/services/map-state.service';
 import podaciData from '@/data/podaci.json';
 
 @Component({
   selector: 'app-home-page',
-  imports: [MapView, ChartView, GenericTable],
+  imports: [ChartWrapper, MapWrapper],
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
 export class HomePage implements OnInit {
 
-  locations = sampleLocations;
-  selectedLocationId = sampleLocations[0].id;
-
   timeSeriesData: TimeData = {};
   hourlyData: ChartDataSet | null = null;
-  simpleChartData: ChartDataSet | null = null;
-
-  // Table data for hourly data display
-  hourlyTableData: { time: string; value: number }[] = [];
-  hourlyTableColumns: TableColumn<{ time: string; value: number }>[] = [
-    { key: 'time', label: 'Time', sortable: true, type: 'string' },
-    { key: 'value', label: 'Average Value', sortable: true, type: 'number' }
+  hourlyTableData: Array<{ time: string; value: number }> = [];
+  hourlyTableColumns = [
+    { key: 'time', label: 'Time' },
+    { key: 'value', label: 'Value' }
   ];
 
-  // Table data for peak values
-  peakValuesTableData: { time: string; value: number; rank: number }[] = [];
-  peakValuesTableColumns: TableColumn<{ time: string; value: number; rank: number }>[] = [
-    { key: 'rank', label: 'Rank', sortable: true, type: 'number' },
-    { key: 'time', label: 'Time', sortable: true, type: 'string' },
-    { key: 'value', label: 'Peak Value', sortable: true, type: 'number' }
-  ];
-
-  chartTypes: ChartViewType[] = ['line', 'bar', 'pie', 'doughnut', 'radar', 'polarArea', "scatter"];
-  currentChartType: ChartViewType = 'line';
-
-  constructor(private chartDataService: ChartDataService) { }
+  constructor(
+    private chartDataService: ChartDataService,
+    protected mapState: MapStateService
+  ) { }
 
   ngOnInit(): void {
     // Load the JSON data

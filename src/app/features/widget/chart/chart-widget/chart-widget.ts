@@ -1,24 +1,22 @@
-import { ChartDataSet, ChartViewType, MultiChartDataSet } from '@/app/features/chart/chart.types';
+import { ChartDataSet, ChartWidgetType, MultiChartDataSet } from '@/app/features/widget/chart/chart.types';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges } from '@angular/core';
 import { ChartConfiguration, ChartData } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 /**
- * ChartView component displays various types of charts using Chart.js.
- * 
- * *Note*: Client-only component.
+ * ChartWidget component displays various types of charts using Chart.js.
  */
 @Component({
-  selector: 'app-chart-view',
+  selector: 'app-chart-widget',
   imports: [CommonModule, BaseChartDirective],
-  templateUrl: './chart-view.html',
-  styleUrl: './chart-view.css'
+  templateUrl: './chart-widget.html',
+  styleUrl: './chart-widget.css'
 })
-export class ChartView implements OnChanges {
-  @Input() chartType: ChartViewType = 'line';
+export class ChartWidget implements OnChanges {
+  @Input() chartType: ChartWidgetType = 'line';
   @Input() data: ChartDataSet | MultiChartDataSet | null = null;
-  @Input() title: string = '';
+  @Input() title?: string;
   @Input() width: number = 600;
   @Input() height: number = 400;
   @Input() responsive: boolean = true;

@@ -26,56 +26,16 @@
   border-radius: var(--border-radius-sm);
 }
 
-.widget-container {
-  margin-bottom: var(--padding-3xl);
-  background-color: var(--secondary-color-950);
-  padding: var(--padding-3xl);
-  border-radius: var(--border-radius-xl);
-
-  .widget-title {
-    margin-bottom: var(--padding-lg);
-    font-size: var(--text-xl);
-    font-weight: var(--font-bold);
-  }
-}
-
-.table-section {
-  margin-top: var(--padding-xl);
-
-  h3 {
-    margin-bottom: var(--padding-md);
-    font-size: var(--text-lg);
-    font-weight: var(--font-semibold);
-    color: var(--text-color);
-  }
-}
-
 /* Responsive design */
 
 @media (max-width: 768px) {
   .dashboard-page-title {
     font-size: var(--text-4xl);
   }
-
-  .widget-container {
-    padding: var(--padding-2xl) var(--padding-xl);
-  }
-
-  .widget-title {
-    font-size: var(--text-lg);
-  }
 }
 
 @media (max-width: 480px) {
   .dashboard-page-title {
     font-size: var(--text-3xl);
-  }
-
-  .widget-container {
-    padding: var(--padding-2xl) var(--padding-lg);
-  }
-
-  .widget-title {
-    font-size: var(--text-md);
   }
 }

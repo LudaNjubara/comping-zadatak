@@ -2,7 +2,7 @@ import { ChartTypeRegistry } from "chart.js";
 
 export type ChartAggregationType = 'hourly';
 
-export type ChartViewType = keyof ChartTypeRegistry
+export type ChartWidgetType = keyof ChartTypeRegistry
 
 export interface ChartDataSet {
     label: string;

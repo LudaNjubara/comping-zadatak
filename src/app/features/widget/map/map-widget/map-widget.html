@@ -9,8 +9,8 @@
 
   <!-- Items List Component -->
   <app-map-items-list
-    [items]="items"
-    [selectedItemId]="selectedItem?.id || null"
+    [items]="mapState.locations()"
+    [selectedItemId]="mapState.selectedLocationId()"
     [title]="'Locations'"
     (itemSelected)="onItemSelected($event)">
   </app-map-items-list>

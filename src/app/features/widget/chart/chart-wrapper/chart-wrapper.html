@@ -1,0 +1,16 @@
+<div class="widget-container gradient-border-card">
+        <h2 *ngIf="widgetTitle" class="widget-title"> {{ widgetTitle }}</h2>
+        <app-chart-widget
+            [chartType]="currentChartType"
+            [data]="data"
+            [title]="chartTitle"
+            [height]="300">
+        </app-chart-widget>
+
+        <div *ngIf="withTable" class="table-section">
+            <app-generic-table 
+                [data]="tableData" 
+                [columns]="tableColumns">
+            </app-generic-table>
+        </div>
+    </div>

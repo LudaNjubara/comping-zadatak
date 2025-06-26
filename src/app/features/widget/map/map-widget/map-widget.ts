@@ -1,30 +1,24 @@
-import { MapItemsList } from '@/app/features/map/components/map-items-list/map-items-list';
-import { MapItem } from '@/app/features/map/map.types';
-import { sampleLocations } from '@/app/features/map/sample-locations';
+import { MapItemsList } from '@/app/features/widget/map/components/map-items-list/map-items-list';
+import { MapItem } from '@/app/features/widget/map/map.types';
+import { MapStateService } from '@/app/features/widget/map/services/map-state.service';
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 
 @Component({
-  selector: 'app-map-view',
+  selector: 'app-map-widget',
   imports: [CommonModule, MapItemsList],
-  templateUrl: './map-view.html',
-  styleUrl: './map-view.css'
+  templateUrl: './map-widget.html',
+  styleUrl: './map-widget.css'
 })
-export class MapView implements OnChanges, AfterViewInit {
-  @Input() items: MapItem[] = [];
-  @Input() selectedItemId: string | null = null;
-  @Input() defaultCenter: [number, number] = [sampleLocations[0].lat, sampleLocations[0].lng];
-  @Input() defaultZoom: number = 10;
-
+export class MapWidget implements AfterViewInit {
   @ViewChild('mapElement', { static: false }) mapElement!: ElementRef;
 
   map: L.Map | null = null;
-  selectedItem: MapItem | null = null;
   currentMarker: L.Marker | null = null;
   mapReady = false;
 
-  constructor() { }
+  constructor(protected mapState: MapStateService) { }
 
   ngAfterViewInit(): void {
     this.initializeMap();
@@ -34,10 +28,13 @@ export class MapView implements OnChanges, AfterViewInit {
     try {
       this.fixDefaultMarkers();
 
+      // Use center from selected item or default center
+      const centerCoords = this.getInitialCenter();
+
       // Create map
       this.map = L.map(this.mapElement.nativeElement, {
-        zoom: this.defaultZoom,
-        center: L.latLng(this.defaultCenter[0], this.defaultCenter[1])
+        zoom: this.mapState.defaultZoom(),
+        center: L.latLng(centerCoords[0], centerCoords[1])
       });
 
       // Add tile layer
@@ -49,7 +46,7 @@ export class MapView implements OnChanges, AfterViewInit {
       this.mapReady = true;
 
       // Initialize with items if available - defer to next tick to avoid ExpressionChangedAfterItHasBeenCheckedError
-      if (this.items.length > 0) {
+      if (this.mapState.hasLocations()) {
         setTimeout(() => {
           this.initializeDefaultSelection();
         }, 0);
@@ -57,7 +54,25 @@ export class MapView implements OnChanges, AfterViewInit {
 
     } catch (error) {
       console.error('Failed to initialize map:', error);
+      this.mapState.setError('Failed to initialize map');
     }
+  }
+
+  private getInitialCenter(): [number, number] {
+    // Use selected location from state service
+    const selectedLocation = this.mapState.selectedLocation();
+    if (selectedLocation) {
+      return [selectedLocation.lat, selectedLocation.lng];
+    }
+
+    // If there are locations, use the first one
+    const locations = this.mapState.locations();
+    if (locations.length > 0) {
+      return [locations[0].lat, locations[0].lng];
+    }
+
+    // Use default center
+    return this.mapState.defaultCenter();
   }
 
   private fixDefaultMarkers(): void {
@@ -74,37 +89,17 @@ export class MapView implements OnChanges, AfterViewInit {
     }
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (!this.mapReady) return;
-
-    if (changes['items'] && this.items.length > 0) {
-      setTimeout(() => {
-        this.initializeDefaultSelection();
-      }, 0);
-    }
-
-    if (changes['selectedItemId'] || changes['items']) {
-      setTimeout(() => {
-        this.updateSelectedItem();
-      }, 0);
-    }
-  }
-
   private initializeDefaultSelection(): void {
-    if (this.items.length > 0 && !this.selectedItem && this.mapReady) {
-      const defaultItem = this.selectedItemId
-        ? this.items.find(item => item.id === this.selectedItemId) || this.items[0]
-        : this.items[0];
-
-      this.selectItem(defaultItem);
-    }
-  }
-
-  private updateSelectedItem(): void {
-    if (this.selectedItemId && this.mapReady) {
-      const item = this.items.find(item => item.id === this.selectedItemId);
-      if (item) {
-        this.selectItem(item);
+    if (this.mapState.hasLocations() && this.mapReady) {
+      const selectedLocation = this.mapState.selectedLocation();
+      if (selectedLocation) {
+        this.updateMapForLocation(selectedLocation);
+      } else {
+        // Select first location if none selected
+        const locations = this.mapState.locations();
+        if (locations.length > 0) {
+          this.mapState.selectLocation(locations[0].id);
+        }
       }
     }
   }
@@ -112,9 +107,16 @@ export class MapView implements OnChanges, AfterViewInit {
   selectItem(item: MapItem): void {
     if (!this.mapReady) return;
 
-    this.selectedItem = item;
     this.updateMapMarker(item);
     this.centerMapOnItem(item);
+
+    // Update state service
+    this.mapState.selectLocation(item.id);
+  }
+
+  private updateMapForLocation(location: MapItem): void {
+    this.updateMapMarker(location);
+    this.centerMapOnItem(location);
   }
 
   private updateMapMarker(item: MapItem): void {
@@ -146,7 +148,7 @@ export class MapView implements OnChanges, AfterViewInit {
 
   private centerMapOnItem(item: MapItem): void {
     if (this.map && this.mapReady) {
-      this.map.setView([item.lat, item.lng], this.defaultZoom);
+      this.map.setView([item.lat, item.lng], this.mapState.defaultZoom());
     }
   }
 

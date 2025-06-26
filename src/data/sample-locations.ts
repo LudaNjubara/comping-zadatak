@@ -1,5 +1,4 @@
-import { MapItem } from "@/app/features/map/map.types";
-
+import { MapItem } from "@/app/features/widget/map/map.types";
 
 export const sampleLocations: MapItem[] = [
     {

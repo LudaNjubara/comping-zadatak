@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MapView } from './map-view';
+import { ChartWidget } from './chart-widget';
 
-describe('MapView', () => {
-  let component: MapView;
-  let fixture: ComponentFixture<MapView>;
+describe('ChartWidget', () => {
+  let component: ChartWidget;
+  let fixture: ComponentFixture<ChartWidget>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MapView]
+      imports: [ChartWidget]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(MapView);
+    fixture = TestBed.createComponent(ChartWidget);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

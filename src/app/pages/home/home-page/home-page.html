@@ -2,30 +2,19 @@
 
     <h1 class="dashboard-page-title">Dashboard</h1>
 
-    <div class="widget-container gradient-border-card">
-        <h2 class="widget-title">Locations</h2>
-        <app-map-view 
-            [items]="locations" 
-            [selectedItemId]="selectedLocationId"
-            [defaultZoom]="13"
-            >
-        </app-map-view>
-    </div>
+    <app-map-wrapper
+        [widgetTitle]="'Sample Locations'"
+        [items]="mapState.locations()"
+        [defaultZoom]="mapState.defaultZoom()">
+    </app-map-wrapper>
 
-    <div class="widget-container gradient-border-card">
-        <h2 class="widget-title">Hourly Time Data</h2>
-        <app-chart-view
-            [chartType]="currentChartType"
-            [data]="hourlyData"
-            [title]="'Hourly Averages'"
-            [height]="300">
-        </app-chart-view>
-
-        <div class="table-section">
-            <app-generic-table 
-                [data]="hourlyTableData" 
-                [columns]="hourlyTableColumns">
-            </app-generic-table>
-        </div>
-    </div>
+    <app-chart-wrapper
+        [widgetTitle]="'Hourly Time Data'"
+        [currentChartType]="'line'"
+        [data]="hourlyData"
+        [tableData]="hourlyTableData"
+        [tableColumns]="hourlyTableColumns"
+        [chartTitle]="'Hourly Averages'"
+        [withTable]="true">
+    </app-chart-wrapper>
 </div>
