@@ -10,11 +10,11 @@
 
     <app-chart-wrapper
         [widgetTitle]="'Hourly Time Data'"
-        [currentChartType]="'line'"
-        [data]="hourlyData"
-        [tableData]="hourlyTableData"
-        [tableColumns]="hourlyTableColumns"
-        [chartTitle]="'Hourly Averages'"
-        [withTable]="true">
+        [currentChartType]="chartState.currentChartType()"
+        [data]="chartState.chartData()"
+        [tableData]="chartState.tableData()"
+        [tableColumns]="chartState.tableColumns()"
+        [chartTitle]="chartState.chartTitle()"
+        [withTable]="chartState.showTable()">
     </app-chart-wrapper>
 </div>

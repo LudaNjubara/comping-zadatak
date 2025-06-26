@@ -1,8 +1,9 @@
 
 import { ChartWidget } from '@/app/features/widget/chart/chart-widget/chart-widget';
+import { ChartStateService } from '@/app/features/widget/chart/services/chart-state.service';
 import { GenericTable } from '@/app/shared/components/elements/table/generic-table/generic-table';
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ChartTypeRegistry } from 'chart.js';
 
 @Component({
@@ -11,7 +12,7 @@ import { ChartTypeRegistry } from 'chart.js';
     templateUrl: './chart-wrapper.html',
     styleUrl: './chart-wrapper.css'
 })
-export class ChartWrapper {
+export class ChartWrapper implements OnInit {
     @Input() widgetTitle?: string;
     @Input() currentChartType: keyof ChartTypeRegistry = 'line';
     @Input() data: any;
@@ -20,5 +21,16 @@ export class ChartWrapper {
     @Input() tableData: any[] = [];
     @Input() tableColumns: any[] = [];
 
-    constructor() { }
+    constructor(private chartState: ChartStateService) { }
+
+    ngOnInit(): void {
+        // Sync input values with chart state if they differ
+        if (this.currentChartType !== this.chartState.currentChartType()) {
+            this.chartState.setChartType(this.currentChartType);
+        }
+
+        if (this.withTable !== this.chartState.showTable()) {
+            this.chartState.setShowTable(this.withTable);
+        }
+    }
 }
