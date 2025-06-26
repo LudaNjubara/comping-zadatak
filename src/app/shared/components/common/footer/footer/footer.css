@@ -1,6 +1,5 @@
 .footer {
-  background-color: var(--secondary-color-900);
-  border-top: 2px solid var(--secondary-color-700);
+  border-top: 2px solid var(--neutral-color-800);
 }
 
 .container {
