@@ -14,7 +14,7 @@
   </app-pokemon-error>
 
   <!-- Pokemon Details -->
-  <main
+  <div
     *ngIf="!loading() && !error() && pokemon()"
     class="pokemon-details gradient-border-card"
   >
@@ -49,5 +49,5 @@
         ></app-pokemon-base-stats>
       </section>
     </div>
-  </main>
+  </div>
 </div>

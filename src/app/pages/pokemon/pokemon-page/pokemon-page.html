@@ -1,39 +1,54 @@
-<div>
-  <h1 class="pokemon-page-title">Pokemon Collection</h1>
+<div class="pokemon-page">
+  <!-- Page Header -->
+  <app-pokemon-page-header title="Pokemon Collection"></app-pokemon-page-header>
 
-  <!-- Loading State (only for initial load) -->
-  <div *ngIf="pokemonState.loading()" class="loading-container">
-    <div class="loading-spinner"></div>
-    <p class="loading-text">Loading Pokémon data...</p>
-  </div>
+  <!-- Loading State -->
+  <app-pokemon-loading *ngIf="pokemonState.loading()"></app-pokemon-loading>
 
   <!-- Error State -->
-  <div *ngIf="pokemonState.error() && !pokemonState.loading()" class="error-container">
-    <div class="error-icon">⚠️</div>
-    <h3 class="error-title">Oops! Something went wrong</h3>
-    <p class="error-message">{{ pokemonState.error() }}</p>
-  </div>
+  <app-pokemon-error
+    *ngIf="pokemonState.error() && !pokemonState.loading()"
+    [errorTitle]="'Oops! Something went wrong'"
+    [errorMessage]="pokemonState.error()!"
+  ></app-pokemon-error>
 
   <!-- Main Content -->
-  <div *ngIf="!pokemonState.loading() && !pokemonState.error()" class="content-container">
-    <!-- Pokemon Table -->
-    <div class="table-wrapper" [class.loading-overlay]="pokemonState.loading()">
-      <app-generic-table
-        [data]="pokemonState.pokemon()"
-        [columns]="columns"
-        [clickableRows]="true"
-        [emptyMessage]="'No Pokémon found'"
-        (rowClick)="onRowClick($event)">
-      </app-generic-table>
+  <main
+    *ngIf="!pokemonState.loading() && !pokemonState.error()"
+    class="content-container"
+    role="main"
+    aria-label="Pokemon collection table"
+  >
+    <!-- Pokemon Table Section -->
+    <section class="table-section">
+      <div
+        class="table-wrapper"
+        [class.loading-overlay]="pokemonState.loading()"
+      >
+        <app-generic-table
+          [data]="pokemonState.pokemon()"
+          [columns]="columns"
+          [clickableRows]="true"
+          [emptyMessage]="'No Pokémon found'"
+          (rowClick)="onRowClick($event)"
+          role="table"
+          aria-label="Pokemon collection data"
+        >
+        </app-generic-table>
 
-      <!-- Pagination -->
-      <div class="pagination-wrapper">
-        <app-table-pagination
-          [config]="paginationConfig"
-          (pageChange)="onPageChange($event)"
-          (firstPage)="onFirstPage()">
-        </app-table-pagination>
+        <!-- Pagination -->
+        <nav
+          class="pagination-wrapper"
+          aria-label="Pokemon collection pagination"
+        >
+          <app-table-pagination
+            [config]="paginationConfig"
+            (pageChange)="onPageChange($event)"
+            (firstPage)="onFirstPage()"
+          >
+          </app-table-pagination>
+        </nav>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 </div>
