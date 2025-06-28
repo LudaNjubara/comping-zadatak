@@ -32,10 +32,10 @@ export class HomePage implements OnInit {
 
   ngOnInit(): void {
     this.metadataService.updateMetadata({
-      title: 'Dashboard - CompingZadatak',
+      title: this.metadataService.createPageTitle('Dashboard'),
       description: 'Interaktivni dashboard s widgetima za prikaz podataka, grafova i mapa.',
       keywords: 'dashboard, charts, maps, data visualization, analytics',
-      ogTitle: 'Dashboard - CompingZadatak',
+      ogTitle: this.metadataService.createPageTitle('Dashboard'),
       ogDescription: 'Interaktivni dashboard s widgetima za prikaz podataka, grafova i mapa.',
       ogUrl: window.location.href
     });

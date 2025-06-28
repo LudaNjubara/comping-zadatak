@@ -1,3 +1,4 @@
+import { APP_CONFIG } from '@/app/core/config/app.config';
 import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 
@@ -23,10 +24,10 @@ export class MetadataService {
     private metaService = inject(Meta);
 
     private defaultMetadata: PageMetadata = {
-        title: 'CompingZadatak',
+        title: APP_CONFIG.site.name,
         description: 'Angular aplikacija koja sadrži dashboard s widgetima za prikaz interaktivne mape i podataka u grafičkom/tabličnom prikazu. Također uključuje pregled Pokemon-a s detaljnim informacijama.',
         keywords: 'Angular, Dashboard, Pokemon, Charts, Maps, Widgets',
-        ogTitle: 'CompingZadatak',
+        ogTitle: APP_CONFIG.site.name,
         ogDescription: 'Angular aplikacija s dashboardom i Pokemon pregledom',
         ogImage: '/images/og-image.jpg',
         twitterCard: 'summary_large_image'
@@ -50,6 +51,7 @@ export class MetadataService {
         this.updateMetaTag('og:image', finalMetadata.ogImage, 'property');
         this.updateMetaTag('og:url', finalMetadata.ogUrl, 'property');
         this.updateMetaTag('og:type', 'website', 'property');
+        this.updateMetaTag('og:site_name', APP_CONFIG.site.name, 'property');
 
         // Twitter Card tags
         this.updateMetaTag('twitter:card', finalMetadata.twitterCard, 'name');
@@ -72,5 +74,14 @@ export class MetadataService {
 
     resetToDefault(): void {
         this.updateMetadata(this.defaultMetadata);
+    }
+
+    getSiteName(): string {
+        return APP_CONFIG.site.name;
+    }
+
+    // Helper method to create page titles with site name
+    createPageTitle(pageTitle: string): string {
+        return `${pageTitle} - ${APP_CONFIG.site.name}`;
     }
 }

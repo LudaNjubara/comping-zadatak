@@ -44,10 +44,10 @@ export class PokemonPage implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.metadataService.updateMetadata({
-      title: 'Pokemon Collection - CompingZadatak',
+      title: this.metadataService.createPageTitle('Pokemon Collection'),
       description: 'Pregledajte potpunu bazu Pokemon podataka s detaljnim informacijama, statistikama i slikama.',
       keywords: 'pokemon, collection, stats, abilities, types, games',
-      ogTitle: 'Pokemon Collection - CompingZadatak',
+      ogTitle: this.metadataService.createPageTitle('Pokemon Collection'),
       ogDescription: 'Pregledajte potpunu bazu Pokemon podataka s detaljnim informacijama.',
       ogUrl: window.location.href
     });

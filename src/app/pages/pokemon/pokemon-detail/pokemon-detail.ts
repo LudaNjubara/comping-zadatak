@@ -64,10 +64,10 @@ export class PokemonDetailPage implements OnInit, OnDestroy {
       const pokemonId = pokemon.id.toString().padStart(3, '0');
 
       this.metadataService.updateMetadata({
-        title: `${pokemonName} (#${pokemonId}) - Pokemon`,
+        title: `${pokemonName} (#${pokemonId}) - Pokemon Directory`,
         description: `Detaljne informacije o ${pokemonName} Pokemon-u. Pogledajte statistike, sposobnosti, tipove i više. Visina: ${pokemon.height / 10}m, Težina: ${pokemon.weight / 10}kg.`,
         keywords: `${pokemon.name}, pokemon, stats, abilities, ${pokemon.types.map(t => t.type.name).join(', ')}`,
-        ogTitle: `${pokemonName} (#${pokemonId}) - Pokemon`,
+        ogTitle: this.metadataService.createPageTitle(`${pokemonName} (#${pokemonId})`),
         ogDescription: `Detaljne informacije o ${pokemonName} Pokemon-u. ${pokemon.types.map(t => t.type.name).join('/')} tip.`,
         ogImage: pokemon.sprites.front_default || undefined,
         ogUrl: window.location.href

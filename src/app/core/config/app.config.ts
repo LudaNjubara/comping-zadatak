@@ -1,4 +1,7 @@
 export const APP_CONFIG = {
+    site: {
+        name: 'CompingZadatak',
+    },
     api: {
         baseUrl: 'https://pokeapi.co/api/v2',
         timeout: 10000

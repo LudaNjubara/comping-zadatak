@@ -1,3 +1,4 @@
+import { APP_CONFIG } from '@/app/core/config/app.config';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { App } from './app';
@@ -16,10 +17,16 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', () => {
+  it('should have the correct title from config', () => {
+    const fixture = TestBed.createComponent(App);
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual(APP_CONFIG.site.name);
+  });
+
+  it('should render router outlet', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, comping-zadatak');
+    expect(compiled.querySelector('router-outlet')).toBeTruthy();
   });
 });
