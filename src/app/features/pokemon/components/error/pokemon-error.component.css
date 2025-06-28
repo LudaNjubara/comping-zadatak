@@ -1,0 +1,54 @@
+/* =============================================================================
+   ERROR STATE
+   ============================================================================= */
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-5xl) var(--padding-xl);
+  text-align: center;
+
+  background: var(--neutral-color-900);
+  border: 1px solid var(--neutral-color-700);
+  border-radius: var(--border-radius-xl);
+  backdrop-filter: blur(12px);
+}
+
+.error-icon {
+  font-size: 64px;
+  margin-bottom: var(--padding-xl);
+}
+
+.error-title {
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--text-color);
+  margin-bottom: var(--padding-lg);
+}
+
+.error-message {
+  font-size: var(--text-lg);
+  color: var(--neutral-color-300);
+  margin-bottom: var(--padding-2xl);
+}
+
+.retry-button {
+  padding: var(--padding-md) var(--padding-2xl);
+
+  background: var(--neutral-color-600);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius-sm);
+
+  font-weight: var(--font-medium);
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.retry-button:hover {
+  background: var(--neutral-color-500);
+  transform: translateY(-2px);
+}

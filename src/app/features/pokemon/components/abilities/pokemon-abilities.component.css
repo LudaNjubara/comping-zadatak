@@ -1,0 +1,82 @@
+/* =============================================================================
+   INFO CARD LAYOUT
+   ============================================================================= */
+
+.info-card {
+  position: relative;
+  background: var(--neutral-color-900);
+  border-radius: var(--border-radius-lg);
+  padding: var(--padding-xl);
+}
+
+.info-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-color-400);
+  letter-spacing: var(--tracking-wide);
+  margin: 0 0 var(--padding-lg) 0;
+}
+
+/* =============================================================================
+   ABILITIES SECTION
+   ============================================================================= */
+
+.abilities-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--padding-md);
+}
+
+.ability-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--padding-sm) var(--padding-md);
+
+  background: var(--neutral-color-800);
+  border: 1px solid var(--neutral-color-700);
+  border-radius: var(--border-radius-sm);
+
+  transition: background-color 0.2s ease;
+}
+
+.ability-item:hover {
+  background: var(--neutral-color-700);
+}
+
+.ability-name {
+  color: var(--text-color);
+  font-weight: var(--font-medium);
+  text-transform: capitalize;
+}
+
+.hidden-tag {
+  font-size: var(--text-xs);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+
+  padding: 4px var(--padding-sm);
+  border-radius: var(--border-radius-xs);
+
+  color: white;
+  background: linear-gradient(
+    135deg,
+    var(--neutral-color-600),
+    var(--neutral-color-500)
+  );
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 480px) {
+  .info-card {
+    padding: var(--padding-lg);
+  }
+
+  .info-title {
+    font-size: var(--text-lg);
+  }
+}

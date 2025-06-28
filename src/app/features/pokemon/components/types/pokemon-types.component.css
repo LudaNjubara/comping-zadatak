@@ -1,0 +1,125 @@
+/* =============================================================================
+   INFO CARD LAYOUT
+   ============================================================================= */
+
+.info-card {
+  position: relative;
+  background: var(--neutral-color-900);
+  border-radius: var(--border-radius-lg);
+  padding: var(--padding-xl);
+}
+
+.info-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-color-400);
+  letter-spacing: var(--tracking-wide);
+  margin: 0 0 var(--padding-lg) 0;
+}
+
+/* =============================================================================
+   TYPE BADGES
+   ============================================================================= */
+
+.types-container {
+  display: flex;
+  gap: var(--padding-md);
+  flex-wrap: wrap;
+}
+
+.type-badge {
+  padding: var(--padding-sm) var(--padding-lg);
+  border-radius: var(--border-radius-full);
+
+  font-size: var(--text-sm);
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: white;
+
+  background: linear-gradient(
+    135deg,
+    var(--neutral-color-600),
+    var(--neutral-color-500)
+  );
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+  transition: transform 0.2s ease;
+}
+
+.type-badge:hover {
+  transform: translateY(-2px);
+}
+
+/* Type-Specific Colors */
+.type-badge[data-type="normal"] {
+  background: linear-gradient(135deg, #a8a878, #6d6d4e);
+}
+.type-badge[data-type="fire"] {
+  background: linear-gradient(135deg, #f08030, #9c531f);
+}
+.type-badge[data-type="water"] {
+  background: linear-gradient(135deg, #6890f0, #445e9c);
+}
+.type-badge[data-type="grass"] {
+  background: linear-gradient(135deg, #78c850, #4e8234);
+}
+.type-badge[data-type="electric"] {
+  background: linear-gradient(135deg, #f8d030, #a1871f);
+}
+.type-badge[data-type="ice"] {
+  background: linear-gradient(135deg, #98d8d8, #638d8d);
+}
+.type-badge[data-type="fighting"] {
+  background: linear-gradient(135deg, #c03028, #7d1f1a);
+}
+.type-badge[data-type="poison"] {
+  background: linear-gradient(135deg, #a040a0, #682a68);
+}
+.type-badge[data-type="ground"] {
+  background: linear-gradient(135deg, #e0c068, #927d44);
+}
+.type-badge[data-type="flying"] {
+  background: linear-gradient(135deg, #a890f0, #6d5e9c);
+}
+.type-badge[data-type="psychic"] {
+  background: linear-gradient(135deg, #f85888, #a13959);
+}
+.type-badge[data-type="bug"] {
+  background: linear-gradient(135deg, #a8b820, #6d7815);
+}
+.type-badge[data-type="rock"] {
+  background: linear-gradient(135deg, #b8a038, #786824);
+}
+.type-badge[data-type="ghost"] {
+  background: linear-gradient(135deg, #705898, #493963);
+}
+.type-badge[data-type="dragon"] {
+  background: linear-gradient(135deg, #7038f8, #4924a1);
+}
+.type-badge[data-type="dark"] {
+  background: linear-gradient(135deg, #705848, #49392f);
+}
+.type-badge[data-type="steel"] {
+  background: linear-gradient(135deg, #b8b8d0, #787887);
+}
+.type-badge[data-type="fairy"] {
+  background: linear-gradient(135deg, #ee99ac, #9b6470);
+}
+.type-badge[data-type="stellar"] {
+  background: linear-gradient(135deg, #40e0d0, #2a9b8a);
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 480px) {
+  .info-card {
+    padding: var(--padding-lg);
+  }
+
+  .info-title {
+    font-size: var(--text-lg);
+  }
+}

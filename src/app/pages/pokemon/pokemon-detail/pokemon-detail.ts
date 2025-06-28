@@ -1,24 +1,39 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { heroChevronLeft } from '@ng-icons/heroicons/outline';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { MetadataService } from '@/app/core/services/metadata.service';
+import { PokemonAbilitiesComponent } from '@/app/features/pokemon/components/abilities/pokemon-abilities.component';
+import { PokemonBaseStatsComponent } from '@/app/features/pokemon/components/base-stats/pokemon-base-stats.component';
+import { PokemonErrorComponent } from '@/app/features/pokemon/components/error/pokemon-error.component';
+import { PokemonHeaderComponent } from '@/app/features/pokemon/components/header/pokemon-header.component';
+import { PokemonImageComponent } from '@/app/features/pokemon/components/image/pokemon-image.component';
+import { PokemonLoadingComponent } from '@/app/features/pokemon/components/loading/pokemon-loading.component';
+import { PokemonNavigationComponent } from '@/app/features/pokemon/components/navigation/pokemon-navigation.component';
+import { PokemonPhysicalStatsComponent } from '@/app/features/pokemon/components/physical-stats/pokemon-physical-stats.component';
+import { PokemonTypesComponent } from '@/app/features/pokemon/components/types/pokemon-types.component';
 import { PokemonStateService } from '@/app/features/pokemon/services/pokemon-state.service';
-import { NgIcon } from '@ng-icons/core';
 
 @Component({
   selector: 'app-pokemon-detail',
-  imports: [CommonModule, NgIcon],
+  imports: [
+    CommonModule,
+    PokemonNavigationComponent,
+    PokemonLoadingComponent,
+    PokemonErrorComponent,
+    PokemonImageComponent,
+    PokemonHeaderComponent,
+    PokemonPhysicalStatsComponent,
+    PokemonTypesComponent,
+    PokemonAbilitiesComponent,
+    PokemonBaseStatsComponent
+  ],
   templateUrl: './pokemon-detail.html',
   styleUrl: './pokemon-detail.css'
 })
 export class PokemonDetailPage implements OnInit, OnDestroy {
-  // Icons
-  chevronLeftIcon = heroChevronLeft;
-
   private destroy$ = new Subject<void>();
   private metadataService = inject(MetadataService);
 
@@ -83,13 +98,5 @@ export class PokemonDetailPage implements OnInit, OnDestroy {
     this.router.navigate(['/pokemon'], {
       queryParams: { page: this.returnPage }
     });
-  }
-
-  formatStatName(statName: string): string {
-    return statName
-      .replace('-', ' ')
-      .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-      .join(' ');
   }
 }

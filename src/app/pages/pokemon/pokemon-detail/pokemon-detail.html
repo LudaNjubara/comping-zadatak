@@ -1,134 +1,53 @@
-<div>
-  <!-- Back Button -->
-  <button class="back-button" (click)="goBack()">
-    <ng-icon [svg]="chevronLeftIcon" [size]="'20px'" />
-    Back to Pokemon List
-  </button>
+<div class="pokemon-detail-page">
+  <!-- Navigation -->
+  <app-pokemon-navigation (backClick)="goBack()"></app-pokemon-navigation>
 
   <!-- Loading State -->
-  <div *ngIf="loading()" class="loading-container">
-    <div class="loading-spinner"></div>
-    <p class="loading-text">Loading Pokémon details...</p>
-  </div>
+  <app-pokemon-loading *ngIf="loading()"></app-pokemon-loading>
 
   <!-- Error State -->
-  <div *ngIf="!loading() && error()" class="error-container">
-    <div class="error-icon">⚠️</div>
-    <h3 class="error-title">Pokémon not found</h3>
-    <p class="error-message">{{ error() }}</p>
-    <button class="retry-button" (click)="retryLoad()">Try Again</button>
-  </div>
+  <app-pokemon-error
+    *ngIf="!loading() && error()"
+    [errorMessage]="error()!"
+    (retryClick)="retryLoad()"
+  >
+  </app-pokemon-error>
 
   <!-- Pokemon Details -->
-  <div
+  <main
     *ngIf="!loading() && !error() && pokemon()"
     class="pokemon-details gradient-border-card"
   >
     <div class="pokemon-grid">
       <!-- Image Section -->
-      <div class="pokemon-image-section">
-        <div class="image-container">
-          <div class="gradient-border-2">
-            <div class="pokemon-container with-stripes">
-              <div class="noise"></div>
-              <img
-                [src]="pokemon()!.sprites.front_default"
-                [alt]="pokemon()!.name"
-                class="pokemon-main-image"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
+      <app-pokemon-image [pokemon]="pokemon()!"></app-pokemon-image>
 
       <!-- Details Section -->
-      <div class="pokemon-info-section">
-        <header class="pokemon-header">
-          <h1 class="pokemon-name">{{ pokemon()!.name | titlecase }}</h1>
-          <span class="pokemon-id"
-            >#{{ pokemon()!.id.toString().padStart(3, '0') }}</span
-          >
-        </header>
+      <section class="pokemon-info-section">
+        <!-- Pokemon Header -->
+        <app-pokemon-header [pokemon]="pokemon()!"></app-pokemon-header>
 
-        <!-- Basic Info -->
+        <!-- Basic Info Grid -->
         <div class="info-grid">
-          <div class="info-card gradient-border-card">
-            <h3 class="info-title">Physical</h3>
-            <div class="info-content">
-              <div class="stat-item">
-                <span class="stat-label">Height:</span>
-                <span class="stat-value"
-                  >{{ (pokemon()!.height / 10).toFixed(1) }} m</span
-                >
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">Weight:</span>
-                <span class="stat-value"
-                  >{{ (pokemon()!.weight / 10).toFixed(1) }} kg</span
-                >
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">Base Experience:</span>
-                <span class="stat-value">{{ pokemon()!.base_experience }}</span>
-              </div>
-            </div>
-          </div>
+          <!-- Physical Stats -->
+          <app-pokemon-physical-stats
+            [pokemon]="pokemon()!"
+          ></app-pokemon-physical-stats>
 
-          <div class="info-card gradient-border-card">
-            <h3 class="info-title">Types</h3>
-            <div class="types-container">
-              <span
-                *ngFor="let type of pokemon()!.types"
-                class="type-badge"
-                [attr.data-type]="type.type.name"
-              >
-                {{ type.type.name | titlecase }}
-              </span>
-            </div>
-          </div>
+          <!-- Types -->
+          <app-pokemon-types [types]="pokemon()!.types"></app-pokemon-types>
 
-          <div class="info-card gradient-border-card">
-            <h3 class="info-title">Abilities</h3>
-            <div class="abilities-container">
-              <div
-                *ngFor="let ability of pokemon()!.abilities"
-                class="ability-item"
-                [class.hidden]="ability.is_hidden"
-              >
-                <span class="ability-name"
-                  >{{ ability.ability.name | titlecase }}</span
-                >
-                <span *ngIf="ability.is_hidden" class="hidden-tag">Hidden</span>
-              </div>
-            </div>
-          </div>
+          <!-- Abilities -->
+          <app-pokemon-abilities
+            [abilities]="pokemon()!.abilities"
+          ></app-pokemon-abilities>
         </div>
 
-        <!-- Stats -->
-        <div class="stats-section">
-          <h3 class="section-title">Base Stats</h3>
-          <div class="stats-container">
-            <div
-              *ngFor="let stat of pokemon()!.stats"
-              class="stat-bar gradient-border-card"
-            >
-              <div class="stat-info">
-                <span class="stat-name"
-                  >{{ formatStatName(stat.stat.name) }}</span
-                >
-                <span class="stat-number">{{ stat.base_stat }}</span>
-              </div>
-              <div class="stat-progress">
-                <div
-                  class="stat-fill"
-                  [style.width.%]="(stat.base_stat / 255) * 100"
-                  [attr.data-stat]="stat.stat.name"
-                ></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        <!-- Base Stats -->
+        <app-pokemon-base-stats
+          [stats]="pokemon()!.stats"
+        ></app-pokemon-base-stats>
+      </section>
     </div>
-  </div>
+  </main>
 </div>

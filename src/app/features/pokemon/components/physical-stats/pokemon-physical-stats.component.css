@@ -1,0 +1,61 @@
+/* =============================================================================
+   INFO CARD LAYOUT
+   ============================================================================= */
+
+.info-card {
+  position: relative;
+  background: var(--neutral-color-900);
+  border-radius: var(--border-radius-lg);
+  padding: var(--padding-xl);
+}
+
+.info-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-color-400);
+  letter-spacing: var(--tracking-wide);
+  margin: 0 0 var(--padding-lg) 0;
+}
+
+/* =============================================================================
+   STAT ITEMS (Physical Stats)
+   ============================================================================= */
+
+.stat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--padding-md);
+  padding: var(--padding-sm) 0;
+  border-bottom: 1px solid var(--neutral-color-800);
+}
+
+.stat-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.stat-label {
+  color: var(--neutral-color-300);
+  font-weight: var(--font-medium);
+}
+
+.stat-value {
+  color: var(--text-color);
+  font-weight: var(--font-bold);
+  font-size: var(--text-lg);
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 480px) {
+  .info-card {
+    padding: var(--padding-lg);
+  }
+
+  .info-title {
+    font-size: var(--text-lg);
+  }
+}

@@ -1,0 +1,65 @@
+/* =============================================================================
+   POKEMON HEADER
+   ============================================================================= */
+
+.pokemon-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--padding-2xl);
+  padding-bottom: var(--padding-xl);
+  border-bottom: 2px solid var(--neutral-color-700);
+}
+
+.pokemon-name {
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  color: var(--text-color);
+  margin: 0;
+
+  background: linear-gradient(
+    90deg,
+    var(--text-color),
+    var(--neutral-color-400)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pokemon-id {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-color-400);
+
+  background: var(--neutral-color-800);
+  border: 1px solid var(--neutral-color-700);
+  border-radius: var(--border-radius-sm);
+  padding: var(--padding-md) var(--padding-lg);
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .pokemon-header {
+    flex-direction: column;
+    gap: var(--padding-lg);
+    text-align: center;
+  }
+
+  .pokemon-name {
+    font-size: var(--text-4xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .pokemon-name {
+    font-size: var(--text-3xl);
+  }
+
+  .pokemon-id {
+    font-size: var(--text-lg);
+  }
+}

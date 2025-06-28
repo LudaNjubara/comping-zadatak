@@ -1,0 +1,201 @@
+/* =============================================================================
+   POKEMON IMAGE SECTION
+   ============================================================================= */
+
+.pokemon-image-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: var(--padding-2xl);
+  border-radius: var(--border-radius-lg);
+}
+
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--padding-xl);
+}
+
+/* Image Effects */
+.pokemon-container.with-stripes::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(5px);
+
+  background: linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.15) 20%,
+      transparent 20.1%
+    ),
+    linear-gradient(
+      -45deg,
+      transparent 65%,
+      rgba(255, 255, 255, 0.1) 50.1%,
+      rgba(255, 255, 255, 0.1) 80%,
+      transparent 80.1%
+    );
+}
+
+/* Gradient Border Base */
+.gradient-border-2 {
+  padding: var(--padding-xs);
+  border-radius: var(--border-radius-xl);
+  display: inline-block;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+
+  /* Default gradient (fallback) */
+  background: radial-gradient(circle at top left, #ff6a00, #ff0000),
+    radial-gradient(circle at bottom right, #ffa500, #ff4500);
+}
+
+/* =============================================================================
+   TYPE-SPECIFIC GRADIENT BORDERS
+   ============================================================================= */
+
+.gradient-border-2[data-primary-type="normal"] {
+  background: radial-gradient(circle at top left, #a8a878, #8a8a5e),
+    radial-gradient(circle at bottom right, #c4c498, #6d6d4e);
+}
+
+.gradient-border-2[data-primary-type="fire"] {
+  background: radial-gradient(circle at top left, #f08030, #d4661f),
+    radial-gradient(circle at bottom right, #ff9a5a, #9c531f);
+}
+
+.gradient-border-2[data-primary-type="water"] {
+  background: radial-gradient(circle at top left, #6890f0, #5a7acc),
+    radial-gradient(circle at bottom right, #8ab0ff, #445e9c);
+}
+
+.gradient-border-2[data-primary-type="grass"] {
+  background: radial-gradient(circle at top left, #78c850, #66aa44),
+    radial-gradient(circle at bottom right, #96d66a, #4e8234);
+}
+
+.gradient-border-2[data-primary-type="electric"] {
+  background: radial-gradient(circle at top left, #f8d030, #ddb92a),
+    radial-gradient(circle at bottom right, #ffe156, #a1871f);
+}
+
+.gradient-border-2[data-primary-type="ice"] {
+  background: radial-gradient(circle at top left, #98d8d8, #7fc2c2),
+    radial-gradient(circle at bottom right, #b8e8e8, #638d8d);
+}
+
+.gradient-border-2[data-primary-type="fighting"] {
+  background: radial-gradient(circle at top left, #c03028, #aa2820),
+    radial-gradient(circle at bottom right, #d44a42, #7d1f1a);
+}
+
+.gradient-border-2[data-primary-type="poison"] {
+  background: radial-gradient(circle at top left, #a040a0, #8a368a),
+    radial-gradient(circle at bottom right, #c058c0, #682a68);
+}
+
+.gradient-border-2[data-primary-type="ground"] {
+  background: radial-gradient(circle at top left, #e0c068, #c4a456),
+    radial-gradient(circle at bottom right, #f0d082, #927d44);
+}
+
+.gradient-border-2[data-primary-type="flying"] {
+  background: radial-gradient(circle at top left, #a890f0, #927acc),
+    radial-gradient(circle at bottom right, #c0b0ff, #6d5e9c);
+}
+
+.gradient-border-2[data-primary-type="psychic"] {
+  background: radial-gradient(circle at top left, #f85888, #d44a72),
+    radial-gradient(circle at bottom right, #ff7aa8, #a13959);
+}
+
+.gradient-border-2[data-primary-type="bug"] {
+  background: radial-gradient(circle at top left, #a8b820, #929e1c),
+    radial-gradient(circle at bottom right, #c0d63a, #6d7815);
+}
+
+.gradient-border-2[data-primary-type="rock"] {
+  background: radial-gradient(circle at top left, #b8a038, #a08a30),
+    radial-gradient(circle at bottom right, #d0ba52, #786824);
+}
+
+.gradient-border-2[data-primary-type="ghost"] {
+  background: radial-gradient(circle at top left, #705898, #5e4a80),
+    radial-gradient(circle at bottom right, #8a6cb8, #493963);
+}
+
+.gradient-border-2[data-primary-type="dragon"] {
+  background: radial-gradient(circle at top left, #7038f8, #5a2cd4),
+    radial-gradient(circle at bottom right, #9058ff, #4924a1);
+}
+
+.gradient-border-2[data-primary-type="dark"] {
+  background: radial-gradient(circle at top left, #705848, #5e4a3a),
+    radial-gradient(circle at bottom right, #8a6c58, #49392f);
+}
+
+.gradient-border-2[data-primary-type="steel"] {
+  background: radial-gradient(circle at top left, #b8b8d0, #a0a0b8),
+    radial-gradient(circle at bottom right, #d0d0e8, #787887);
+}
+
+.gradient-border-2[data-primary-type="fairy"] {
+  background: radial-gradient(circle at top left, #ee99ac, #d485a0),
+    radial-gradient(circle at bottom right, #ffb3c6, #9b6470);
+}
+
+.gradient-border-2[data-primary-type="stellar"] {
+  background: radial-gradient(circle at top left, #40e0d0, #36c4b4),
+    radial-gradient(circle at bottom right, #60f0e0, #2a9b8a);
+}
+
+/* =============================================================================
+   POKEMON CONTAINER & IMAGE
+   ============================================================================= */
+
+.pokemon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.noise {
+  position: absolute;
+  inset: 0;
+  background: url("/images/noise.svg");
+  opacity: 0.5;
+}
+
+.pokemon-main-image {
+  position: relative;
+  width: 340px;
+  height: 340px;
+  padding: var(--padding-xl);
+  z-index: 1;
+
+  object-fit: contain;
+  border-radius: inherit;
+  transition: transform 0.3s ease;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .pokemon-main-image {
+    width: 240px;
+    height: 240px;
+  }
+}

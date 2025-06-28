@@ -1,0 +1,26 @@
+/* =============================================================================
+   NAVIGATION & ACTIONS
+   ============================================================================= */
+
+.back-button {
+  display: flex;
+  align-items: center;
+  gap: var(--padding-sm);
+  padding: var(--padding-md) var(--padding-xl);
+  margin-bottom: var(--padding-3xl);
+
+  background: var(--neutral-color-800);
+  color: var(--text-color);
+  border: 1px solid var(--neutral-color-700);
+  border-radius: var(--border-radius-sm);
+
+  font-size: var(--text-md);
+  font-weight: var(--font-medium);
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background: var(--neutral-color-700);
+}

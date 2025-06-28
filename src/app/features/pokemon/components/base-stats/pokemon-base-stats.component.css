@@ -1,0 +1,84 @@
+/* =============================================================================
+   BASE STATS SECTION
+   ============================================================================= */
+
+.stats-section {
+  margin-top: var(--padding-2xl);
+  padding-top: var(--padding-2xl);
+  border-top: 2px solid var(--neutral-color-700);
+}
+
+.section-title {
+  font-size: var(--text-2xl);
+  font-weight: var(--font-bold);
+  color: var(--neutral-color-400);
+  letter-spacing: var(--tracking-wide);
+  margin: 0 0 var(--padding-xl) 0;
+}
+
+.stats-container {
+  display: grid;
+  gap: var(--padding-lg);
+}
+
+.stat-bar {
+  display: grid;
+  grid-template-columns: 1fr 120px;
+  gap: var(--padding-lg);
+  align-items: center;
+  padding: var(--padding-md);
+
+  background: var(--neutral-color-900);
+  border-radius: var(--border-radius-sm);
+}
+
+.stat-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stat-name {
+  color: var(--text-color);
+  font-weight: var(--font-semibold);
+  text-transform: capitalize;
+}
+
+.stat-number {
+  color: var(--neutral-color-400);
+  font-weight: var(--font-bold);
+  font-size: var(--text-lg);
+}
+
+.stat-progress {
+  height: 12px;
+  background: var(--neutral-color-700);
+  border-radius: var(--border-radius-full);
+  overflow: hidden;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stat-fill {
+  height: 100%;
+  border-radius: var(--border-radius-full);
+
+  background: linear-gradient(
+    90deg,
+    var(--neutral-color-600),
+    var(--neutral-color-400)
+  );
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+  transition: width 0.8s ease;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
+@media (max-width: 768px) {
+  .stat-bar {
+    grid-template-columns: 1fr;
+    gap: var(--padding-md);
+  }
+}
