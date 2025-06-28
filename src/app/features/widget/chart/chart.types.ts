@@ -18,3 +18,19 @@ export interface MultiChartDataSet {
     labels: string[];
     datasets: ChartDataSet[];
 }
+
+export interface ChartWrapperConfig {
+    chartType: ChartWidgetType;
+    height?: number;
+    width?: number;
+    title?: string;
+    showTable?: boolean;
+}
+
+export interface ChartWidgetConfig {
+    type: ChartWidgetType;
+    width?: number;
+    height?: number;
+}
+
+export type DataTransformer = (data: any, ...rest: any[]) => MultiChartDataSet;

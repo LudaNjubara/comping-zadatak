@@ -14,10 +14,4 @@ export const TABLE_CONFIGS = {
         { key: 'time', label: 'Time', sortable: true, type: 'string' },
         { key: 'value', label: 'Average Value', sortable: true, type: 'number' }
     ] as TableColumn<any>[],
-
-    peakValues: [
-        { key: 'rank', label: 'Rank', sortable: true, type: 'number' },
-        { key: 'time', label: 'Time', sortable: true, type: 'string' },
-        { key: 'value', label: 'Peak Value', sortable: true, type: 'number' }
-    ] as TableColumn<any>[]
 } as const;

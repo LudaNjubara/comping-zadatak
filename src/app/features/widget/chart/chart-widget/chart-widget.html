@@ -1,15 +1,16 @@
 <div class="chart-container">
-  <div *ngIf="isBrowserOnly" class="chart-wrapper">
-    <canvas 
+  <div class="chart-wrapper">
+    <canvas
       baseChart
       [data]="chartData"
       [options]="chartOptions"
-      [type]="chartType"
-      [width]="width"
-      [height]="height">
+      [type]="chartConfig.type"
+      [width]="chartConfig.width"
+      [height]="chartConfig.height"
+    >
     </canvas>
   </div>
-  
+
   <!-- Empty state -->
   <div *ngIf="!data || (chartData.datasets.length === 0)" class="empty-state">
     <div class="empty-content">

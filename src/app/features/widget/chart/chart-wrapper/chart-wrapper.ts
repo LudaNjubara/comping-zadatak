@@ -1,10 +1,14 @@
 
 import { ChartWidget } from '@/app/features/widget/chart/chart-widget/chart-widget';
-import { ChartStateService } from '@/app/features/widget/chart/services/chart-state.service';
-import { GenericTable } from '@/app/shared/components/elements/table/generic-table/generic-table';
+import { GenericTable, TableColumn } from '@/app/shared/components/elements/table/generic-table/generic-table';
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { ChartTypeRegistry } from 'chart.js';
+import { Component, computed, Input, Signal } from '@angular/core';
+import {
+    ChartWidgetConfig,
+    ChartWrapperConfig,
+    DataTransformer,
+    MultiChartDataSet
+} from '../chart.types';
 
 @Component({
     selector: 'app-chart-wrapper',
@@ -12,25 +16,33 @@ import { ChartTypeRegistry } from 'chart.js';
     templateUrl: './chart-wrapper.html',
     styleUrl: './chart-wrapper.css'
 })
-export class ChartWrapper implements OnInit {
-    @Input() widgetTitle?: string;
-    @Input() currentChartType: keyof ChartTypeRegistry = 'line';
-    @Input() data: any;
-    @Input() chartTitle?: string;
-    @Input() withTable: boolean = false;
-    @Input() tableData: any[] = [];
-    @Input() tableColumns: any[] = [];
+export class ChartWrapper {
+    @Input({ required: true }) data: any;
+    @Input() tableColumns: TableColumn<any>[] = [];
+    @Input({ required: true }) config!: ChartWrapperConfig;
+    @Input({ required: true }) transformFn!: DataTransformer;
 
-    constructor(private chartState: ChartStateService) { }
+    processedChartData: Signal<MultiChartDataSet> = computed(() => {
+        return this.transformFn(this.data);
+    });
 
-    ngOnInit(): void {
-        // Sync input values with chart state if they differ
-        if (this.currentChartType !== this.chartState.currentChartType()) {
-            this.chartState.setChartType(this.currentChartType);
-        }
+    processedTableData: Signal<any[]> = computed(() => {
 
-        if (this.withTable !== this.chartState.showTable()) {
-            this.chartState.setShowTable(this.withTable);
-        }
-    }
+        const chartData = this.processedChartData();
+        if (!chartData.datasets[0]) return [];
+
+        const dataset = chartData.datasets[0];
+        return dataset.labels.map((label, index) => ({
+            [this.tableColumns[0].key]: label,
+            [this.tableColumns[1].key]: dataset.data[index]
+        }));
+    });
+
+    chartConfig: Signal<ChartWidgetConfig> = computed(() => {
+        return {
+            type: this.config.chartType,
+            height: this.config.height,
+            width: this.config.width,
+        };
+    });
 }

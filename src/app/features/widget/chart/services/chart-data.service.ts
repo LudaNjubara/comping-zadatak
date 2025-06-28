@@ -1,4 +1,4 @@
-import { ChartAggregationType, ChartDataSet } from '@/app/features/widget/chart/chart.types';
+import { ChartAggregationType, ChartDataSet, MultiChartDataSet } from '@/app/features/widget/chart/chart.types';
 import { TimeData, TimeItem } from '@/types/global.types';
 import { Injectable } from '@angular/core';
 
@@ -10,10 +10,10 @@ export class ChartDataService {
     /**
      * Transform time-based data depending on the aggregation type
      */
-    transformTimeData(timeData: TimeData, aggregation: ChartAggregationType = "hourly"): ChartDataSet {
+    transformTimeData(timeData: TimeData, aggregation: ChartAggregationType = "hourly", datasetLabel: string): MultiChartDataSet {
         switch (aggregation) {
             case 'hourly':
-                return this.aggregateByHour(timeData);
+                return this.aggregateByHour(timeData, datasetLabel);
             default:
                 const _: never = aggregation;
                 throw new Error(`Unsupported aggregation type: ${aggregation}`);
@@ -23,7 +23,7 @@ export class ChartDataService {
     /**
      * Aggregate data by hour
      */
-    private aggregateByHour(timeData: TimeData): ChartDataSet {
+    private aggregateByHour(timeData: TimeData, datasetLabel: string): MultiChartDataSet {
         const hourlyAggregation: { [hour: string]: number } = {};
 
         Object.entries(timeData).forEach(([hourKey, items]) => {
@@ -42,9 +42,12 @@ export class ChartDataService {
         const sortedEntries = Object.entries(hourlyAggregation).sort(([a], [b]) => a.localeCompare(b));
 
         return {
-            label: 'Hourly Average',
             labels: sortedEntries.map(([hour]) => hour),
-            data: sortedEntries.map(([, value]) => value)
+            datasets: [{
+                label: datasetLabel,
+                labels: sortedEntries.map(([hour]) => hour),
+                data: sortedEntries.map(([, value]) => value)
+            }]
         };
     }
 

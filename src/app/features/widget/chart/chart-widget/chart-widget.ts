@@ -1,7 +1,8 @@
-import { ChartDataSet, ChartWidgetType, MultiChartDataSet } from '@/app/features/widget/chart/chart.types';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, Input, OnChanges, PLATFORM_ID, SimpleChanges } from '@angular/core';
-import { ChartConfiguration, ChartData } from 'chart.js';
+import { CHART_WIDGET_OPTIONS } from '@/app/features/widget/chart/chart.constants';
+import { ChartWidgetConfig, MultiChartDataSet } from '@/app/features/widget/chart/chart.types';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChartData } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
 
 /**
@@ -14,19 +15,11 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrl: './chart-widget.css'
 })
 export class ChartWidget implements OnChanges {
-  @Input() chartType: ChartWidgetType = 'line';
-  @Input() data: ChartDataSet | MultiChartDataSet | null = null;
-  @Input() title?: string;
-  @Input() width: number = 600;
-  @Input() height: number = 400;
-  @Input() responsive: boolean = true;
-
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: string,
-  ) { }
-
-  get isBrowserOnly(): boolean {
-    return isPlatformBrowser(this.platformId);
+  @Input() data: MultiChartDataSet | null = null;
+  @Input() chartConfig: ChartWidgetConfig = {
+    type: 'line',
+    width: 600,
+    height: 400,
   }
 
   chartData: ChartData<any> = {
@@ -34,33 +27,7 @@ export class ChartWidget implements OnChanges {
     datasets: []
   };
 
-  chartOptions: ChartConfiguration['options'] = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: {
-        display: true,
-        position: 'top'
-      },
-      title: {
-        display: false
-      }
-    },
-    scales: {
-      x: {
-        display: true,
-        grid: {
-          display: true
-        }
-      },
-      y: {
-        display: true,
-        grid: {
-          display: true
-        }
-      }
-    }
-  };
+  chartOptions = CHART_WIDGET_OPTIONS;
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] || changes['chartType']) {
@@ -71,15 +38,7 @@ export class ChartWidget implements OnChanges {
   private updateChart(): void {
     if (!this.data) return;
 
-    if (this.isMultiDataSet(this.data)) {
-      this.processMultiDataSet(this.data);
-    } else {
-      this.processSingleDataSet(this.data);
-    }
-  }
-
-  private isMultiDataSet(data: ChartDataSet | MultiChartDataSet): data is MultiChartDataSet {
-    return 'datasets' in data;
+    this.processMultiDataSet(this.data);
   }
 
   private processMultiDataSet(multiDataSet: MultiChartDataSet): void {
@@ -94,21 +53,6 @@ export class ChartWidget implements OnChanges {
         fill: dataset.fill || false,
         tension: 0.4
       }))
-    };
-  }
-
-  private processSingleDataSet(dataSet: ChartDataSet): void {
-    this.chartData = {
-      labels: dataSet.labels,
-      datasets: [{
-        label: dataSet.label,
-        data: dataSet.data,
-        backgroundColor: dataSet.backgroundColor,
-        borderColor: dataSet.borderColor,
-        borderWidth: dataSet.borderWidth || 2,
-        fill: dataSet.fill || false,
-        tension: 0.4
-      }]
     };
   }
 }

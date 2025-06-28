@@ -1,10 +1,24 @@
 
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
+import { TABLE_CONFIGS } from '@/app/core/config/table.config';
 import { ChartWrapper } from '@/app/features/widget/chart/chart-wrapper/chart-wrapper';
-import { ChartStateService } from '@/app/features/widget/chart/services/chart-state.service';
+import { ChartWrapperConfig } from '@/app/features/widget/chart/chart.types';
+import { ChartDataService } from '@/app/features/widget/chart/services/chart-data.service';
 import { MapWrapper } from '@/app/features/widget/map/map-wrapper/map-wrapper';
 import { MapStateService } from '@/app/features/widget/map/services/map-state.service';
+import { TableColumn } from '@/app/shared/components/elements/table/generic-table/generic-table';
+import podaciData from '@/data/podaci.json';
+
+interface Charts {
+  [key: string]: {
+    data: any;
+    tableData?: any[];
+    tableColumns: TableColumn<any>[];
+    config: ChartWrapperConfig;
+    transformFn: (data: any) => any;
+  };
+}
 
 @Component({
   selector: 'app-home-page',
@@ -12,15 +26,21 @@ import { MapStateService } from '@/app/features/widget/map/services/map-state.se
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
-export class HomePage implements OnInit {
+export class HomePage {
+  charts: Charts = {
+    timeChart: {
+      data: podaciData,
+      tableColumns: TABLE_CONFIGS.hourlyData,
+      config: {
+        chartType: 'line',
+        showTable: true,
+        height: 300
+      },
+      transformFn: (data: any): any => {
+        return this.chartDataService.transformTimeData(data, 'hourly', 'Hourly Time Data');
+      }
+    },
+  };
 
-  constructor(
-    protected mapState: MapStateService,
-    protected chartState: ChartStateService
-  ) { }
-
-  ngOnInit(): void {
-    // Initialize chart data
-    this.chartState.loadTimeSeriesData();
-  }
+  constructor(protected mapState: MapStateService, protected chartDataService: ChartDataService) { }
 }

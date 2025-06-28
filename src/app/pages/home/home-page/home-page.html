@@ -1,20 +1,18 @@
 <div>
+  <h1 class="dashboard-page-title">Dashboard</h1>
 
-    <h1 class="dashboard-page-title">Dashboard</h1>
+  <app-map-wrapper
+    [widgetTitle]="'Sample Locations'"
+    [items]="mapState.locations()"
+    [defaultZoom]="mapState.defaultZoom()"
+  >
+  </app-map-wrapper>
 
-    <app-map-wrapper
-        [widgetTitle]="'Sample Locations'"
-        [items]="mapState.locations()"
-        [defaultZoom]="mapState.defaultZoom()">
-    </app-map-wrapper>
-
-    <app-chart-wrapper
-        [widgetTitle]="'Hourly Time Data'"
-        [currentChartType]="chartState.currentChartType()"
-        [data]="chartState.chartData()"
-        [tableData]="chartState.tableData()"
-        [tableColumns]="chartState.tableColumns()"
-        [chartTitle]="chartState.chartTitle()"
-        [withTable]="chartState.showTable()">
-    </app-chart-wrapper>
+  <app-chart-wrapper
+    [data]="charts['timeChart'].data"
+    [tableColumns]="charts['timeChart'].tableColumns"
+    [config]="charts['timeChart'].config"
+    [transformFn]="charts['timeChart'].transformFn"
+  >
+  </app-chart-wrapper>
 </div>
