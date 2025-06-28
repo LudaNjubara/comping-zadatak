@@ -49,8 +49,6 @@
 }
 
 .table-section {
-  background: var(--secondary-color-900);
-  border: 1px solid var(--secondary-color-700);
   border-radius: var(--border-radius-lg);
   padding: var(--padding-xl);
 }

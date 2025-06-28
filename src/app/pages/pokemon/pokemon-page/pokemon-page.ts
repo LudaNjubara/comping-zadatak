@@ -14,7 +14,6 @@ import { PaginationConfig, TablePagination } from '@/app/shared/components/eleme
 // Pokemon components
 import { PokemonErrorComponent } from '@/app/features/pokemon/components/error/pokemon-error.component';
 import { PokemonLoadingComponent } from '@/app/features/pokemon/components/loading/pokemon-loading.component';
-import { PokemonPageHeaderComponent } from '@/app/features/pokemon/components/page-header/pokemon-page-header.component';
 
 @Component({
   selector: 'app-pokemon-page',
@@ -24,7 +23,6 @@ import { PokemonPageHeaderComponent } from '@/app/features/pokemon/components/pa
     TablePagination,
     PokemonLoadingComponent,
     PokemonErrorComponent,
-    PokemonPageHeaderComponent
   ],
   templateUrl: './pokemon-page.html',
   styleUrl: './pokemon-page.css'

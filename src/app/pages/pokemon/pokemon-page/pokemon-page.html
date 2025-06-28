@@ -13,14 +13,13 @@
   ></app-pokemon-error>
 
   <!-- Main Content -->
-  <main
+  <div
     *ngIf="!pokemonState.loading() && !pokemonState.error()"
     class="content-container"
-    role="main"
     aria-label="Pokemon collection table"
   >
     <!-- Pokemon Table Section -->
-    <section class="table-section">
+    <section class="table-section gradient-border-card">
       <div
         class="table-wrapper"
         [class.loading-overlay]="pokemonState.loading()"
@@ -50,5 +49,5 @@
         </nav>
       </div>
     </section>
-  </main>
+  </div>
 </div>
