@@ -1,12 +1,30 @@
-.chart-container {
+/* =============================================================================
+   CHART WIDGET LAYOUT
+   ============================================================================= */
+
+.chart-widget {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+
   background-color: var(--neutral-color-900);
-  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--neutral-color-700);
+  border-radius: var(--border-radius-lg);
   padding: var(--padding-xl);
+
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* =============================================================================
+   CHART SECTION
+   ============================================================================= */
+
+.chart-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 300px;
 }
 
 .chart-wrapper {
@@ -14,14 +32,18 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 300px;
   position: relative;
 }
 
 .chart-wrapper canvas {
   max-width: 100%;
   max-height: 100%;
+  border-radius: var(--border-radius-sm);
 }
+
+/* =============================================================================
+   EMPTY STATE
+   ============================================================================= */
 
 .empty-state {
   flex: 1;
@@ -29,7 +51,7 @@
   align-items: center;
   justify-content: center;
   min-height: 300px;
-  color: var(--neutral-color-400);
+  padding: var(--padding-2xl);
 }
 
 .empty-content {
@@ -41,26 +63,35 @@
   font-size: 4rem;
   margin-bottom: var(--padding-lg);
   opacity: 0.5;
+  line-height: 1;
 }
 
-.empty-content h3 {
+.empty-title {
+  font-size: var(--text-xl);
+  font-weight: var(--font-semibold);
   color: var(--text-color);
-  font-size: 1.25rem;
-  font-weight: 600;
   margin: 0 0 var(--padding-sm) 0;
+  line-height: 1.4;
 }
 
-.empty-content p {
+.empty-message {
+  font-size: var(--text-sm);
   color: var(--neutral-color-400);
-  font-size: 0.875rem;
   margin: 0;
   line-height: 1.5;
 }
 
-/* Responsive design */
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
 @media (max-width: 768px) {
-  .chart-container {
+  .chart-widget {
     padding: var(--padding-lg);
+  }
+
+  .chart-section {
+    min-height: 250px;
   }
 
   .chart-wrapper {
@@ -69,20 +100,25 @@
 
   .empty-state {
     min-height: 250px;
+    padding: var(--padding-lg);
   }
 
   .empty-icon {
     font-size: 3rem;
   }
 
-  .empty-content h3 {
-    font-size: 1.125rem;
+  .empty-title {
+    font-size: var(--text-lg);
   }
 }
 
 @media (max-width: 480px) {
-  .chart-container {
+  .chart-widget {
     padding: var(--padding-md);
+  }
+
+  .chart-section {
+    min-height: 200px;
   }
 
   .chart-wrapper {
@@ -91,9 +127,18 @@
 
   .empty-state {
     min-height: 200px;
+    padding: var(--padding-md);
   }
 
   .empty-icon {
     font-size: 2.5rem;
+  }
+
+  .empty-title {
+    font-size: var(--text-base);
+  }
+
+  .empty-message {
+    font-size: var(--text-xs);
   }
 }

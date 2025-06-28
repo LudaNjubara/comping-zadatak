@@ -1,27 +1,58 @@
-.map-wrapper {
+/* =============================================================================
+   MAP WIDGET LAYOUT
+   ============================================================================= */
+
+.map-widget {
   display: flex;
   gap: var(--padding-xl);
   height: 500px;
   width: 100%;
+  border-radius: var(--border-radius-lg);
+}
+
+/* =============================================================================
+   MAP SECTION
+   ============================================================================= */
+
+.map-section {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 .map-container {
   position: relative;
-  flex: 2;
+  flex: 1;
   height: 100%;
   min-height: 400px;
-  border-radius: var(--border-radius-sm);
+
+  border-radius: var(--border-radius-md);
   overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--neutral-color-600);
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Map-specific styles */
+/* =============================================================================
+   LEAFLET MAP STYLES
+   ============================================================================= */
+
 .leaflet-map {
   width: 100%;
   height: 100%;
   min-height: 400px;
   z-index: 1;
+  border-radius: inherit;
 }
+
+.leaflet-map:focus {
+  outline: 2px solid var(--primary-color-500);
+  outline-offset: 2px;
+}
+
+/* =============================================================================
+   MAP PLACEHOLDER (FALLBACK STATE)
+   ============================================================================= */
 
 .map-placeholder {
   width: 100%;
@@ -29,37 +60,95 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--secondary-color-100);
-  border: 2px dashed var(--secondary-color-300);
+
+  background-color: var(--neutral-color-800);
+  border: 2px dashed var(--neutral-color-600);
   border-radius: var(--border-radius-sm);
 }
 
 .map-placeholder p {
-  color: var(--secondary-color-600);
-  font-size: 1rem;
+  color: var(--neutral-color-400);
+  font-size: var(--text-base);
+  font-weight: var(--font-medium);
   margin: 0;
+  text-align: center;
 }
 
-/* Responsive design */
+/* =============================================================================
+   LOCATIONS SECTION
+   ============================================================================= */
+
+.locations-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 280px;
+  overflow-y: auto;
+}
+
+/* =============================================================================
+   RESPONSIVE DESIGN
+   ============================================================================= */
+
 @media (max-width: 1024px) {
-  .map-wrapper {
+  .map-widget {
     flex-direction: column;
     height: auto;
     gap: var(--padding-lg);
+    padding: var(--padding-md);
+  }
+
+  .map-section {
+    order: 2;
   }
 
   .map-container {
     height: 300px;
-    order: 2;
+    min-height: 300px;
+  }
+
+  .leaflet-map {
+    min-height: 300px;
+  }
+
+  .locations-section {
+    order: 1;
+    min-width: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  .map-widget {
+    gap: var(--padding-md);
+    padding: var(--padding-sm);
+  }
+
+  .map-container {
+    height: 280px;
+    min-height: 280px;
+  }
+
+  .leaflet-map {
+    min-height: 280px;
   }
 }
 
 @media (max-width: 480px) {
-  .map-wrapper {
-    gap: var(--padding-md);
+  .map-widget {
+    gap: var(--padding-sm);
+    padding: var(--padding-xs);
   }
 
   .map-container {
     height: 250px;
+    min-height: 250px;
+  }
+
+  .leaflet-map {
+    min-height: 250px;
+  }
+
+  .map-placeholder p {
+    font-size: var(--text-sm);
   }
 }

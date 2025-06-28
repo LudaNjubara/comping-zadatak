@@ -1,22 +1,36 @@
-<div class="chart-container">
-  <div class="chart-wrapper">
-    <canvas
-      baseChart
-      [data]="chartData"
-      [options]="chartOptions"
-      [type]="chartConfig.type"
-      [width]="chartConfig.width"
-      [height]="chartConfig.height"
-    >
-    </canvas>
-  </div>
-
-  <!-- Empty state -->
-  <div *ngIf="!data || (chartData.datasets.length === 0)" class="empty-state">
-    <div class="empty-content">
-      <div class="empty-icon">📊</div>
-      <h3>No Data Available</h3>
-      <p>Please provide data to display the chart</p>
+<article class="chart-widget" role="img" aria-label="Chart data visualization">
+  <!-- Chart Display -->
+  <section
+    *ngIf="data && chartData.datasets.length > 0"
+    class="chart-section"
+    aria-label="Chart visualization"
+  >
+    <div class="chart-wrapper">
+      <canvas
+        baseChart
+        [data]="chartData"
+        [options]="chartOptions"
+        [type]="chartConfig.type"
+        [width]="chartConfig.width"
+        [height]="chartConfig.height"
+        aria-label="Interactive data chart"
+        role="img"
+      >
+      </canvas>
     </div>
-  </div>
-</div>
+  </section>
+
+  <!-- Empty State -->
+  <section
+    *ngIf="!data || (chartData.datasets.length === 0)"
+    class="empty-state"
+    aria-label="No chart data available"
+    role="status"
+  >
+    <div class="empty-content">
+      <div class="empty-icon" aria-hidden="true">📊</div>
+      <h3 class="empty-title">No Data Available</h3>
+      <p class="empty-message">Please provide data to display the chart</p>
+    </div>
+  </section>
+</article>

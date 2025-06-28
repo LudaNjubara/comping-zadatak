@@ -1,26 +1,61 @@
-<div class="items-container">
-  <h3 class="list-title">{{ items.length }} locations</h3>
+<section class="items-container" role="region" aria-label="Map locations list">
+  <!-- List Header -->
+  <header class="list-header">
+    <h3 class="list-title" id="locations-heading">
+      {{ items.length }} locations
+    </h3>
+  </header>
 
-  <ul class="items-list">
-    <li 
-      *ngFor="let item of items" 
-      class="item-card gradient-border-card"
-      [class.selected]="selectedItemId === item.id"
-      (click)="onItemClick(item)">
-      <div class="item-header">
-        <h4 class="item-name">{{ item.name }}</h4>
-      </div>
-      <p *ngIf="item.description" class="item-description">
-        {{ item.description }}
-      </p>
-      <div class="item-coordinates">
-        <small>{{ item.lat }}, {{ item.lng }}</small>
-      </div>
-    </li>
-    
-    <!-- Empty state -->
-    <div *ngIf="items.length === 0" class="empty-state">
-      <p>No locations available</p>
+  <!-- Items List -->
+  <div class="list-content">
+    <ul
+      class="items-list"
+      role="list"
+      aria-labelledby="locations-heading"
+      [attr.aria-live]="items.length === 0 ? 'polite' : null"
+    >
+      <li
+        *ngFor="let item of items"
+        class="item-card gradient-border-card"
+        [class.selected]="selectedItemId === item.id"
+        (click)="onItemClick(item)"
+        (keydown.enter)="onItemClick(item)"
+        (keydown.space)="onItemClick(item)"
+        role="button"
+        tabindex="0"
+        [attr.aria-pressed]="selectedItemId === item.id"
+        [attr.aria-label]="'Select location: ' + item.name"
+      >
+        <!-- Item Header -->
+        <header class="item-header">
+          <h4 class="item-name">{{ item.name }}</h4>
+        </header>
+
+        <!-- Item Description -->
+        <p
+          *ngIf="item.description"
+          class="item-description"
+          [attr.aria-label]="'Description: ' + item.description"
+        >
+          {{ item.description }}
+        </p>
+
+        <!-- Item Coordinates -->
+        <div class="item-coordinates" aria-label="Coordinates">
+          <small>{{ item.lat }}, {{ item.lng }}</small>
+        </div>
+      </li>
+    </ul>
+
+    <!-- Empty State -->
+    <div
+      *ngIf="items.length === 0"
+      class="empty-state"
+      role="status"
+      aria-live="polite"
+      aria-label="No locations available"
+    >
+      <p class="empty-message">No locations available</p>
     </div>
-  </ul>
-</div>
+  </div>
+</section>

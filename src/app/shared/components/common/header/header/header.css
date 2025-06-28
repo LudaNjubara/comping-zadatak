@@ -49,12 +49,12 @@
 
 .nav-link:hover {
   color: var(--text-color);
-  background-color: var(--secondary-color-800);
+  background-color: var(--neutral-color-800);
 }
 
 /* Active state */
 .nav-link.active {
-  color: var(--secondary-color-900);
+  color: var(--neutral-color-900);
   background-color: var(--neutral-color-50);
 }
 

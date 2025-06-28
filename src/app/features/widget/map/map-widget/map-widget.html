@@ -1,17 +1,31 @@
-<div class="map-wrapper">
-  <!-- Map Container -->
-  <div class="map-container">
-    <div 
-      #mapElement
-      class="leaflet-map">
+<article
+  class="map-widget"
+  role="application"
+  aria-label="Interactive map with location data"
+>
+  <!-- Map Display Section -->
+  <section class="map-section" aria-label="Map visualization">
+    <div class="map-container">
+      <div
+        #mapElement
+        class="leaflet-map"
+        role="img"
+        aria-label="Interactive map showing locations"
+        tabindex="0"
+      ></div>
     </div>
-  </div>
+  </section>
 
-  <!-- Items List Component -->
-  <app-map-items-list
-    [items]="mapState.locations()"
-    [selectedItemId]="mapState.selectedLocationId()"
-    [title]="'Locations'"
-    (itemSelected)="onItemSelected($event)">
-  </app-map-items-list>
-</div>
+  <!-- Location Items Section -->
+  <aside class="locations-section" aria-label="Location list and details">
+    <app-map-items-list
+      [items]="mapState.locations()"
+      [selectedItemId]="mapState.selectedLocationId()"
+      [title]="'Locations'"
+      (itemSelected)="onItemSelected($event)"
+      role="complementary"
+      aria-label="List of map locations"
+    >
+    </app-map-items-list>
+  </aside>
+</article>
