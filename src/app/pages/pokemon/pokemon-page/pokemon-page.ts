@@ -1,10 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { TABLE_CONFIGS } from '@/app/core/config/table.config';
+import { MetadataService } from '@/app/core/services/metadata.service';
 import { PokemonStateService } from '@/app/features/pokemon/services/pokemon-state.service';
 import { PokemonTableData } from '@/app/features/pokemon/services/pokemon.service';
 import { GenericTable } from '@/app/shared/components/elements/table/generic-table/generic-table';
@@ -18,6 +19,7 @@ import { PaginationConfig, TablePagination } from '@/app/shared/components/eleme
 })
 export class PokemonPage implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
+  private metadataService = inject(MetadataService);
 
   // Get table columns from configuration
   columns = TABLE_CONFIGS.pokemon;
@@ -41,6 +43,15 @@ export class PokemonPage implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
+    this.metadataService.updateMetadata({
+      title: 'Pokemon Collection - CompingZadatak',
+      description: 'Pregledajte potpunu bazu Pokemon podataka s detaljnim informacijama, statistikama i slikama.',
+      keywords: 'pokemon, collection, stats, abilities, types, games',
+      ogTitle: 'Pokemon Collection - CompingZadatak',
+      ogDescription: 'Pregledajte potpunu bazu Pokemon podataka s detaljnim informacijama.',
+      ogUrl: window.location.href
+    });
+
     this.route.queryParams.pipe(takeUntil(this.destroy$)).subscribe(params => {
       const page = params['page'] ? + params['page'] : 1;
       this.pokemonState.loadPokemon(page);

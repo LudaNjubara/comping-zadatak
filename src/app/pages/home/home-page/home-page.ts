@@ -1,7 +1,8 @@
 
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 
 import { TABLE_CONFIGS } from '@/app/core/config/table.config';
+import { MetadataService } from '@/app/core/services/metadata.service';
 import { ChartWrapper } from '@/app/features/widget/chart/chart-wrapper/chart-wrapper';
 import { ChartWrapperConfig } from '@/app/features/widget/chart/chart.types';
 import { ChartDataService } from '@/app/features/widget/chart/services/chart-data.service';
@@ -26,7 +27,19 @@ interface Charts {
   templateUrl: './home-page.html',
   styleUrl: './home-page.css'
 })
-export class HomePage {
+export class HomePage implements OnInit {
+  private metadataService = inject(MetadataService);
+
+  ngOnInit(): void {
+    this.metadataService.updateMetadata({
+      title: 'Dashboard - CompingZadatak',
+      description: 'Interaktivni dashboard s widgetima za prikaz podataka, grafova i mapa.',
+      keywords: 'dashboard, charts, maps, data visualization, analytics',
+      ogTitle: 'Dashboard - CompingZadatak',
+      ogDescription: 'Interaktivni dashboard s widgetima za prikaz podataka, grafova i mapa.',
+      ogUrl: window.location.href
+    });
+  }
   charts: Charts = {
     timeChart: {
       data: podaciData,
