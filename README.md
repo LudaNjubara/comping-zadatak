@@ -22,7 +22,9 @@ Ova aplikacija je razvijena koristeći Angular 20 i uključuje sljedeće funkcio
 - RxJS 7.8
 - Leaflet (ngx-leaflet)
 - Chart.js (ng2-charts)
+- NgIcons
 - Karma + Jasmine za testiranje
+- Vercel za deployment
 
 ## Pokretanje aplikacije
 
@@ -71,22 +73,45 @@ Koristi se Karma test runner s Jasmine test framework-om.
 ```
 src/
 ├── app/
-|   ├── core/             # Glavni moduli aplikacije
-│   ├── features/         # Feature moduli
-│   │   ├── chart/        # Chart funkcionalnost
-│   │   ├── pokemon/      # Pokemon funkcionalnost
-│   │   └── map/          # Mapa funkcionalnost
-│   ├── pages/            # Stranice aplikacije
-│   │   ├── home/         # Početna stranica (dashboard)
-│   │   └── pokemon/      # Pokemon stranica (sa podstranicama)
-│   └── shared/           # Dijeljene komponente
-│       └── components/   # Dijeljene komponente
-|           ├── common/   # Zajedničke komponente
-│           └── elements/ # Elementi UI-a
-|
-├── data/                 # Podaci (json)
-├── types/                # Tipovi podataka
-├── utils/                # Pomoćne funkcije
+│   ├── core/
+│   │   ├── config/
+│   │   └── services/
+│   ├── features/
+│   │   ├── pokemon/
+│   │   │   ├── components/
+│   │   │   │   ├── navigation/
+│   │   │   │   ├── loading/
+│   │   │   │   ├── error/
+│   │   │   │   ├── image/
+│   │   │   │   ├── header/
+│   │   │   │   ├── types/
+│   │   │   │   ├── abilities/
+│   │   │   │   └── stats/
+│   │   │   ├── config/
+│   │   │   └── services/
+│   │   └── widget/
+│   │       ├── chart/
+│   │       │   ├── chart-widget/
+│   │       │   └── services/
+│   │       └── map/
+│   │           ├── map-widget/
+│   │           ├── components/
+│   │           └── services/
+│   ├── pages/
+│   │   ├── home/
+│   │   │   └── home-page/
+│   │   └── pokemon/
+│   │       ├── pokemon-page/
+│   │       └── pokemon-detail/
+│   └── shared/
+│       └── components/
+│           ├── common/
+│           └── elements/
+├── assets/
+│   └── fonts/
+├── data/
+├── types/
+└── utils/
 ```
 
 ## Instalacija
