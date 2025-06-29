@@ -16,6 +16,9 @@
   flex-direction: column;
   align-items: center;
   gap: var(--padding-xl);
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 1 / 1;
 }
 
 /* Image Effects */
@@ -52,6 +55,8 @@
   display: inline-block;
   background-origin: border-box;
   background-clip: padding-box, border-box;
+  width: 100%;
+  aspect-ratio: 1 / 1;
 
   /* Default gradient (fallback) */
   background: radial-gradient(circle at top left, #ff6a00, #ff0000),
@@ -168,6 +173,7 @@
   justify-content: center;
   overflow: hidden;
   border-radius: inherit;
+  aspect-ratio: 1 / 1;
 }
 
 .noise {
@@ -179,8 +185,7 @@
 
 .pokemon-main-image {
   position: relative;
-  width: 340px;
-  height: 340px;
+  width: 100%;
   padding: var(--padding-xl);
   z-index: 1;
 
@@ -193,9 +198,14 @@
    RESPONSIVE DESIGN
    ============================================================================= */
 
+@media (max-width: 1200px) {
+  .pokemon-image-section {
+    padding: 0;
+  }
+}
+
 @media (max-width: 768px) {
-  .pokemon-main-image {
-    width: 240px;
-    height: 240px;
+  .pokemon-image-section {
+    padding: var(--padding-lg) 0;
   }
 }
