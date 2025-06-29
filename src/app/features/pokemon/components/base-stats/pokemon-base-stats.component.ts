@@ -1,17 +1,18 @@
+import { capitalizeFirstLetter } from '@/utils/string.utils';
 import { NgFor } from '@angular/common';
 import { Component, Input } from '@angular/core';
 
 interface PokemonStat {
-    stat: {
-        name: string;
-    };
-    base_stat: number;
+  stat: {
+    name: string;
+  };
+  base_stat: number;
 }
 
 @Component({
-    selector: 'app-pokemon-base-stats',
-    imports: [NgFor],
-    template: `
+  selector: 'app-pokemon-base-stats',
+  imports: [NgFor],
+  template: `
     <section class="stats-section">
       <h3 class="section-title">Base Stats</h3>
       <div class="stats-container">
@@ -40,16 +41,16 @@ interface PokemonStat {
       </div>
     </section>
   `,
-    styleUrl: './pokemon-base-stats.component.css'
+  styleUrl: './pokemon-base-stats.component.css'
 })
 export class PokemonBaseStatsComponent {
-    @Input({ required: true }) stats!: PokemonStat[];
+  @Input({ required: true }) stats!: PokemonStat[];
 
-    formatStatName(statName: string): string {
-        return statName
-            .replace('-', ' ')
-            .split(' ')
-            .map(word => word.charAt(0).toUpperCase() + word.slice(1))
-            .join(' ');
-    }
+  formatStatName(statName: string): string {
+    return statName
+      .replace('-', ' ')
+      .split(' ')
+      .map(word => capitalizeFirstLetter(word))
+      .join(' ');
+  }
 }
