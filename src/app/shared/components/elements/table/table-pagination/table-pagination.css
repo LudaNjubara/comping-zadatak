@@ -68,4 +68,20 @@
     font-size: var(--text-xs);
     padding: var(--padding-sm) var(--padding-lg);
   }
+
+  .pagination-btn.first-page,
+  .pagination-btn.prev,
+  .pagination-btn.next {
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    border-radius: var(--border-radius-full);
+    justify-content: center;
+  }
+
+  .pagination-btn.first-page span,
+  .pagination-btn.prev span,
+  .pagination-btn.next span {
+    display: none;
+  }
 }

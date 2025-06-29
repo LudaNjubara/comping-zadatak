@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { NgIcon } from '@ng-icons/core';
-import { heroArrowLeft, heroArrowRight } from '@ng-icons/heroicons/outline';
+import { heroChevronDoubleLeft, heroChevronLeft, heroChevronRight } from '@ng-icons/heroicons/outline';
 
 export interface PaginationConfig {
   currentPage: number;
@@ -19,8 +19,9 @@ export interface PaginationConfig {
 })
 export class TablePagination {
   // Icons
-  arrowRight = heroArrowRight;
-  arrowLeft = heroArrowLeft;
+  chevronDoubleLeftIcon = heroChevronDoubleLeft;
+  chevronRightIcon = heroChevronRight;
+  chevronLeftIcon = heroChevronLeft;
 
   @Input() config: PaginationConfig = {
     currentPage: 1,

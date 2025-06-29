@@ -1,39 +1,41 @@
 <div class="pagination-container">
   <div class="pagination-info">
     <span class="info-text">
-      Showing {{ startItem }} - {{ endItem }} of {{ config.totalItems }} items
+      {{ startItem }} - {{ endItem }} of {{ config.totalItems }} items
     </span>
   </div>
-  
+
   <div class="pagination-controls">
-    <button 
+    <button
       class="pagination-btn first-page"
       [disabled]="config.currentPage === 1"
       (click)="goToFirstPage()"
-      title="First page">
-      First
+      title="First page"
+    >
+      <ng-icon [svg]="chevronDoubleLeftIcon" />
+      <span>Previous</span>
     </button>
-    
-    <button 
+
+    <button
       class="pagination-btn prev"
       [disabled]="!config.hasPrevious"
       (click)="previousPage()"
-      title="Previous page">
-        <ng-icon [svg]="arrowLeft" />
-        Previous
+      title="Previous page"
+    >
+      <ng-icon [svg]="chevronLeftIcon" />
+      <span>Previous</span>
     </button>
-    
-    <span class="page-info">
-      Page {{ config.currentPage }} of {{ totalPages }}
-    </span>
-    
-    <button 
+
+    <span class="page-info"> {{ config.currentPage }} / {{ totalPages }} </span>
+
+    <button
       class="pagination-btn next"
       [disabled]="!config.hasNext"
       (click)="nextPage()"
-      title="Next page">
-      Next
-      <ng-icon [svg]="arrowRight" />
+      title="Next page"
+    >
+      <span>Next</span>
+      <ng-icon [svg]="chevronRightIcon" />
     </button>
   </div>
 </div>
