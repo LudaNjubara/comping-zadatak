@@ -15,6 +15,7 @@ import { PokemonNavigationComponent } from '@/app/features/pokemon/components/na
 import { PokemonPhysicalStatsComponent } from '@/app/features/pokemon/components/physical-stats/pokemon-physical-stats.component';
 import { PokemonTypesComponent } from '@/app/features/pokemon/components/types/pokemon-types.component';
 import { PokemonStateService } from '@/app/features/pokemon/services/pokemon-state.service';
+import { capitalizeFirstLetter } from '@/utils/string.utils';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -75,7 +76,7 @@ export class PokemonDetailPage implements OnInit, OnDestroy {
     // Update metadata when Pokemon data is loaded
     const pokemon = this.pokemon();
     if (pokemon) {
-      const pokemonName = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+      const pokemonName = capitalizeFirstLetter(pokemon.name);
       const pokemonId = pokemon.id.toString().padStart(3, '0');
 
       this.metadataService.updateMetadata({
