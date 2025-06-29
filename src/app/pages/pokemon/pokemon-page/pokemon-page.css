@@ -1,14 +1,4 @@
 /* =============================================================================
-   PAGE LAYOUT & STRUCTURE
-   ============================================================================= */
-
-.pokemon-page {
-  padding: var(--padding-2xl);
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* =============================================================================
    PAGE TITLE
    ============================================================================= */
 
@@ -84,8 +74,8 @@
 }
 
 @media (max-width: 768px) {
-  .pokemon-page {
-    padding: var(--padding-lg);
+  .pokemon-page-title {
+    font-size: var(--text-4xl);
   }
 
   .table-section {
@@ -94,8 +84,8 @@
 }
 
 @media (max-width: 480px) {
-  .pokemon-page {
-    padding: var(--padding-md);
+  .pokemon-page-title {
+    font-size: var(--text-3xl);
   }
 
   .table-section {
